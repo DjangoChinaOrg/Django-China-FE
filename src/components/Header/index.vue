@@ -1,7 +1,7 @@
 <template>
   <div class="header-box">
     <div class="header">
-        <div class="float-left">
+        <div class="float-left logo">
           <img src="../../assets/common/logo.png" alt="">
           <span class="name">中文社区</span>
         </div>
@@ -84,5 +84,10 @@ export default {
     font-weight: 700;
     font-size: 14px;
     color: #092D1F;
+  }
+  .logo {
+    img {
+      vertical-align: middle;
+    }
   }
 </style>

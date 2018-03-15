@@ -62,11 +62,12 @@ export default {
     visible (val) {
       if (val) {
         // document.body.appendChild(this.$el)
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
           this.show = true
         }, 300)
       } else {
         this.hide()
+        clearTimeout(this.timer)
       }
     }
   },
