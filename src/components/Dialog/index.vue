@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-show="visible" style="overflow: hidden">
+    <div v-show="visible">
       <div :class="[{'show': visible}, 'modal', 'fade']" style="display: block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -38,20 +38,17 @@ export default {
   },
   methods: {
     handleCancel: function () {
-      this.show = !this.show
       this.hide()
     },
     handleSure: function () {
-      this.show = !this.show
       this.hide()
     },
     handleClose: function () {
-      this.show = !this.show
       this.hide()
     },
     hide: function () {
+      this.show = !this.show
       this.$emit('update:visible', false)
-      document.body.removeChild(this.$refs.modal)
     }
   },
   computed: {
@@ -63,16 +60,14 @@ export default {
   },
   watch: {
     visible (val) {
-      console.log(val)
       if (val) {
-        //document.body.appendChild(this.$el)
+        // document.body.appendChild(this.$el)
       } else {
         this.hide()
       }
     }
   },
   mounted: function () {
-    console.log(this)
     document.body.appendChild(this.$el)
   },
   destroyed: function () {
@@ -80,9 +75,12 @@ export default {
   }
 }
 </script>
-<style>
-  .fade-enter-active, .fade-leave-active {
+<style lang="scss">
+  .fade-leave-active {
     transition: opacity .5s;
+  }
+  .fade-enter-active {
+    transition: opacity .8s;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
