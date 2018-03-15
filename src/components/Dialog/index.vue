@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-show="visible">
-      <div :class="[{'show': visible}, 'modal', 'fade']" style="display: block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div :class="['modal', 'fade', {'show': show}]" style="display: block" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <div class="show modal-backdrop fade"></div>
+      <div class="modal-backdrop fade show"></div>
     </div>
   </transition>
 </template>
@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      show: this.visible
+      show: false
     }
   },
   methods: {
@@ -62,6 +62,9 @@ export default {
     visible (val) {
       if (val) {
         // document.body.appendChild(this.$el)
+        setTimeout(() => {
+          this.show = true
+        }, 300)
       } else {
         this.hide()
       }
@@ -77,10 +80,11 @@ export default {
 </script>
 <style lang="scss">
   .fade-leave-active {
+    display: block;
     transition: opacity .5s;
   }
   .fade-enter-active {
-    transition: opacity .8s;
+    transition: opacity .5s;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;

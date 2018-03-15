@@ -30,7 +30,6 @@ export default {
   methods: {
     handleClick: function () {
       this.show = !this.show
-      console.log(this)
     }
   }
 }
