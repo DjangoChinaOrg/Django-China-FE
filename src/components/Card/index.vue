@@ -26,7 +26,7 @@ export default {
 <style lang="scss">
   .hot-tags {
     width: 275px;
-    height: 220px;
+    min-height: 220px;
     margin-top: 20px;
     background: #fff;
   }
@@ -36,22 +36,12 @@ export default {
     padding: 0 10px;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
-  h3 {
-    font-weight: bolder;
-    float: left;
-  }
-  span {
-    float: right;
-  }
-  }
-  .tags-box {
-    padding: 10px 12px;
-  a {
-    display: inline-block;
-    padding: 10px 15px;
-    margin: 0 5px 5px 0;
-    border-radius: 5px;
-    background: #e3e3e3;
-  }
+    h3 {
+      font-weight: bolder;
+      float: left;
+    }
+    span {
+      float: right;
+    }
   }
 </style>

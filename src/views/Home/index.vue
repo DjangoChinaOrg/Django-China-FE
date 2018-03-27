@@ -8,169 +8,7 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
-            <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
-              <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</p>
+            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
             <p class="post-tag">
               <span class="post-author">隔壁老王</span>
               <span class="separator">·</span>
@@ -204,12 +42,39 @@
         <Card title="热门文章" :more="true">
           <ul>
             <li>
-              <p>我最喜欢的</p>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            </li>
+            <li>
+              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
             </li>
           </ul>
         </Card>
         <Card title="关注我们">
-
+          <div class="contact-us">
+            <img src="../../assets/common/zhihu.jpg" alt="">
+            <img src="../../assets/common/weixin.jpg" alt="">
+          </div>
+          <div>
+            
+          </div>
         </Card>
       </div>
     </div>
@@ -369,7 +234,7 @@ export default {
   }
   .hot-tags {
     width: 275px;
-    height: 220px;
+    min-height: 220px;
     margin-top: 20px;
     background: #fff;
   }
@@ -391,10 +256,19 @@ export default {
     padding: 10px 12px;
     a {
       display: inline-block;
-      padding: 10px 15px;
+      padding: 5px 10px;
       margin: 0 5px 5px 0;
       border-radius: 5px;
-      background: #e3e3e3;
+      background: #fff;
+      font-size: 12px;
+    }
+  }
+  .contact-us {
+    text-align: center;
+    padding-bottom: 10px;
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
 </style>
