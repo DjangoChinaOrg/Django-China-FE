@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// components
 import Home from '@/views/Home'
-import About from '@/views/About'
+import Profile from '@/views/Profile'
 Vue.use(Router)
 
 export default new Router({
@@ -12,9 +13,22 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/detail',
+      name: 'detail',
+      component: Home
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      redirect: '/profile/basic',
+      children: [
+        {
+          path: 'basic',
+          name: 'basic',
+          component: Home
+        }
+      ]
     }
   ]
 })

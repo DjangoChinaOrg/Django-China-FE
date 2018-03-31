@@ -87,7 +87,7 @@ export default {
   }
   .logo {
     img {
-      vertical-align: middle;
+      vertical-align: -9px;
     }
   }
 </style>

@@ -21,6 +21,78 @@
             <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
           </div>
         </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-tag">
+              <span class="post-author">隔壁老王</span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">加密</a></span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">深度学习</a></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-tag">
+              <span class="post-author">隔壁老王</span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">加密</a></span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">深度学习</a></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-tag">
+              <span class="post-author">隔壁老王</span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">加密</a></span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">深度学习</a></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-tag">
+              <span class="post-author">隔壁老王</span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">加密</a></span>
+              <span class="separator">·</span>
+              <span class="tag"><a href="">深度学习</a></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
       </ul>
       <div class="fl side-right">
         <div class="sign">
@@ -67,37 +139,31 @@
             </li>
           </ul>
         </Card>
-        <Card title="关注我们">
-          <div class="contact-us">
-            <img src="../../assets/common/zhihu.jpg" alt="">
-            <img src="../../assets/common/weixin.jpg" alt="">
-          </div>
-          <div>
-            
-          </div>
-        </Card>
       </div>
     </div>
-    <div @click="handleClick()">显示modal</div>
+    <!-- <div @click="handleClick()">显示modal</div>
     <Dialog title="提示信息" :visible.sync="show">
       <span>{{msg}}</span>
       <span slot="footer">
         <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
         <button type="button" class="btn btn-primary" @click="show = false">确定</button>
       </span>
-    </Dialog>
+    </Dialog> -->
+    <Footer />
   </div>
 </template>
 <script>
 import Header from '@/components/Header'
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
+import Footer from '@/components/Footer'
 export default {
   name: 'Home',
   components: {
     Header,
     Dialog,
-    Card
+    Card,
+    Footer
   },
   data () {
     return {
@@ -123,19 +189,13 @@ export default {
   }
   .post-list {
     width: 765px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
     li {
       position: relative;
       height: 70px;
       padding: 5px 10px;
-      background: inherit;
       background-color: rgba(255, 255, 255, 1);
-      box-sizing: border-box;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgba(226, 226, 226, 1);
-      -moz-box-shadow: none;
-      -webkit-box-shadow: none;
-      box-shadow: none;
+      border-bottom: 1px solid #ccc;
       .thumb {
         width: 50px;
         height: 50px;
