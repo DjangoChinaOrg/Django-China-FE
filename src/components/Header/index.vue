@@ -2,17 +2,19 @@
   <div class="header-box">
     <div class="header">
         <div class="float-left logo">
-          <img src="../../assets/common/logo.png" alt="">
-          <span class="name">中文社区</span>
+          <router-link to="/">
+            <img src="../../assets/common/logo.png" alt="">
+            <span class="name">中文社区</span>
+          </router-link>
         </div>
         <div class="float-right">
           <div class="search-box">
             <input type="text" class="search">
           </div>
           <div class="log-box">
-            <span><a href="">注册</a></span>
+            <span><router-link to="register">注册</router-link></span>
             |
-            <span><a href="">登陆</a></span>
+            <span><router-link to="login">登陆</router-link></span>
           </div>
         </div>
     </div>
@@ -35,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .name {
         font-weight: bolder;
     }
@@ -89,5 +91,8 @@ export default {
     img {
       vertical-align: -9px;
     }
+  }
+  a:hover {
+    text-decoration: none;
   }
 </style>

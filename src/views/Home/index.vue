@@ -8,13 +8,13 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-title"><router-link to="/detail/1">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
             </p>
           </div>
           <div class="post-view">
@@ -26,13 +26,13 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-title"><router-link to="/detail/2">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
             </p>
           </div>
           <div class="post-view">
@@ -44,13 +44,13 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-title"><router-link to="/detail/3">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
             </p>
           </div>
           <div class="post-view">
@@ -62,13 +62,13 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-title"><router-link to="/detail/4">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
             </p>
           </div>
           <div class="post-view">
@@ -80,13 +80,103 @@
             <img src="../../assets/logo.png" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             <p class="post-tag">
-              <span class="post-author">隔壁老王</span>
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">加密</a></span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><a href="">深度学习</a></span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-tag">
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-tag">
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-tag">
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-tag">
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+            </p>
+          </div>
+          <div class="post-view">
+            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+          </div>
+        </li>
+        <li>
+          <div class="fl thumb">
+            <img src="../../assets/logo.png" alt="">
+          </div>
+          <div class="fl post-info">
+            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-tag">
+              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
+              <span class="separator">·</span>
+              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
             </p>
           </div>
           <div class="post-view">
@@ -114,28 +204,25 @@
         <Card title="热门文章" :more="true">
           <ul>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/1">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/2">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/3">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/4">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/6">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
             <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
-            </li>
-            <li>
-              <p><a href="">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</a></p>
+              <p><router-link to="/detail/7">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
             </li>
           </ul>
         </Card>
