@@ -17,6 +17,6 @@ body {
   background-color: rgba(226, 226, 226, 1);
 }
 .container {
-  padding: 10px 0;
+  padding: 10px 40px;
 }
 </style>

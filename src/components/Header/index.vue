@@ -12,9 +12,9 @@
             <input type="text" class="search">
           </div>
           <div class="log-box">
-            <span><router-link to="register">注册</router-link></span>
+            <span><router-link to="/register">注册</router-link></span>
             |
-            <span><router-link to="login">登陆</router-link></span>
+            <span><router-link to="/login">登陆</router-link></span>
           </div>
         </div>
     </div>

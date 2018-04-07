@@ -31,12 +31,12 @@ export default {
 </script>
 <style lang="scss" scoped>
   .container {
-    padding: 0;
+    padding: 10px 40px;
   }
   .footer {
     background: #fff;
     width: 100%;
-    height: 200px;
+    height: 220px;
     .links {
       padding: 10px 0;
       font-weight: bold;
