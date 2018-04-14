@@ -4,6 +4,10 @@ import Router from 'vue-router'
 import Home from '@/views/Home'
 import Detail from '@/views/Detail'
 import Profile from '@/views/Profile'
+import Basic from '@/views/Profile/Basic'
+import EmailSet from '@/views/Profile/EmailSet'
+import Account from '@/views/Profile/AccountCombine'
+import ChangePwd from '@/views/Profile/ChangePwd'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import User from '@/views/User'
@@ -41,7 +45,22 @@ export default new Router({
         {
           path: 'basic',
           name: 'basic',
-          component: Home
+          component: Basic
+        },
+        {
+          path: 'password',
+          name: 'password',
+          component: ChangePwd
+        },
+        {
+          path: 'email',
+          name: 'email',
+          component: EmailSet
+        },
+        {
+          path: 'account',
+          name: 'account',
+          component: Account
         }
       ]
     },
