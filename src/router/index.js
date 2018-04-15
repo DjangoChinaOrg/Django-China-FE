@@ -11,6 +11,9 @@ import ChangePwd from '@/views/Profile/ChangePwd'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import User from '@/views/User'
+import Publish from '@/views/Publish'
+import Notification from '@/views/Notification'
+import HomePage from '@/views/HomePage'
 Vue.use(Router)
 
 export default new Router({
@@ -68,6 +71,21 @@ export default new Router({
       path: '/user/:id',
       name: 'user',
       component: User
+    },
+    {
+      path: '/add',
+      name: 'add',
+      component: Publish
+    },
+    {
+      path: '/notification',
+      name: 'notification',
+      component: Notification
+    },
+    {
+      path: '/homepage',
+      name: 'homepage',
+      component: HomePage
     }
   ]
 })

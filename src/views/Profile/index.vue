@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header/>
     <div class="container clearfix">
       <div class="left-box">
         <ul>
@@ -17,12 +16,8 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
 export default {
   name: 'Profile',
-  components: {
-    Header
-  },
   data () {
     return {
       msg: '你好'
@@ -32,7 +27,7 @@ export default {
 </script>
 <style scoped lang="scss">
   .container {
-    padding: 60px 20px;
+    padding: 10px 20px;
   }
   .left-box {
     float: left;

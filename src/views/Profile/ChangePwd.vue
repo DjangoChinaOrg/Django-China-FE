@@ -24,7 +24,7 @@ export default {
     return {
       msg: '1'
     }
-  }  
+  }
 }
 </script>
 <style scoped>
@@ -32,4 +32,3 @@ export default {
     margin-bottom: 10px;
   }
 </style>
-

@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <Header></Header>
     <div class="container clearfix">
       <div class="float-left">
         <div class="post-detail">
@@ -10,16 +9,9 @@
               <span >Django中文社区</span><span class="separator"> · </span><span>1000点击</span><span class="separator"> · </span><span>1个月前</span>
             </div>
           </div>
-          <div class="post-body">
-            湖南为中华人民共和国省级行政区，地处中国中南部、长江中游南部，宋代划定为荆湖南路而开始简称湖南，省内最大河流湘江流贯南北而简称“湘”，也称潇湘，省会驻东北部的长沙市。湖南东临江西，西接重庆、贵州，南毗广东、广西，北与湖北相连。 [1] 
-  湖南是华夏文明的重要发祥地之一，相传炎帝神农氏在此种植五谷、织麻为布、制作陶器，坐落于炎陵县西部的炎帝陵成为凝聚中华民族的精神象征；舜帝明德天下，足历洞庭，永州九嶷山为其陵寝之地。 [2]  湖南自古盛植木芙蓉，五代时就有“秋风万里芙蓉国”之说，因此又有“芙蓉国”之称。 [1] 
-  湖南土地面积21.18万平方千米，占中国国土面积的2.2%，在各省市区面积中居第10位。下辖13个市、1个自治州（122个县、市、区）， [3-4] 
-  2016年，湖南省地区生产总值31244.7亿元，比2015年增长7.9%。截至2016年末，湖南省常住人口6822.0万人。其中，城镇人口3598.6万人，城镇化率52.75%，比上年末提高1.86个百分点。 [
-          </div>
+          <div class="post-body"></div>
         </div>
-        <div class="post-comments">
-            
-        </div>
+        <div class="post-comments"></div>
       </div>
       <div class="fl side-right">
         <div class="sign">
@@ -77,14 +69,12 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 export default {
   name: 'Home',
   components: {
-    Header,
     Dialog,
     Card,
     Footer
@@ -105,9 +95,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .wrapper {
-    padding-top: 45px;
-  }
   .fl {
     float: left;
   }

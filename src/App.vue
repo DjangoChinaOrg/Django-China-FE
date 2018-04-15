@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Header />
+    <div class="content">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header
+  }
 }
 </script>
 
@@ -15,6 +22,9 @@ export default {
 @import "styles/reset.css";
 body {
   background-color: rgba(226, 226, 226, 1);
+}
+.content {
+  padding-top: 50px;
 }
 .container {
   padding: 10px 40px;

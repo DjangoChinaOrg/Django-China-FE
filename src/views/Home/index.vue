@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <Header></Header>
     <div class="container clearfix">
       <ul class="post-list float-left">
         <li>
@@ -240,14 +239,12 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 export default {
   name: 'Home',
   components: {
-    Header,
     Dialog,
     Card,
     Footer
@@ -268,9 +265,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .wrapper {
-    padding-top: 45px;
-  }
   .fl {
     float: left;
   }

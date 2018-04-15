@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="container">
       <div class="form-box">
         <h1 class="title">登陆Django中国</h1>
@@ -28,12 +27,8 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
 export default {
   name: 'Register',
-  components: {
-    Header
-  },
   data () {
     return {
       msg: '123'

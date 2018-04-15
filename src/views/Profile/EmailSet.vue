@@ -30,7 +30,7 @@ export default {
     return {
       msg: '邮箱设置'
     }
-  }  
+  }
 }
 </script>
 <style scoped>

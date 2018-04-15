@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="container">
       <div class="form-box">
         <form>
@@ -40,12 +39,10 @@
   </div>
 </template>
 <script>
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 export default {
   name: 'Register',
   components: {
-    Header,
     Footer
   },
   data () {

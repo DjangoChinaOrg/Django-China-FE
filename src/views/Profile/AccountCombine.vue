@@ -19,7 +19,7 @@ export default {
     return {
       msg: '账号关联'
     }
-  }  
+  }
 }
 </script>
 <style scoped>

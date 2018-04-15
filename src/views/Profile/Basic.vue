@@ -38,10 +38,10 @@ export default {
     return {
       msg: 'basic'
     }
-  }  
+  }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .thumb {
     text-align: center;
     border-bottom: 1px solid #ccc;
@@ -67,7 +67,7 @@ export default {
     padding: 20px 10px;
   }
   .form-group label {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
   .upload {
     appearance: none;
