@@ -6,12 +6,52 @@
           <div class="post-header">
             <h1 class="post-title">Django-中文社区，开发团队介绍</h1>
             <div class="post-info">
-              <span >Django中文社区</span><span class="separator"> · </span><span>1000点击</span><span class="separator"> · </span><span>1个月前</span>
+              <span>Django中文社区</span><span class="separator"> · </span><span>1000点击</span><span class="separator"> · </span><span>1个月前</span>
             </div>
           </div>
-          <div class="post-body"></div>
+          <div class="post-body">当前文章id：{{$route.params.id}}</div>
         </div>
-        <div class="post-comments"></div>
+        <div class="post-comments">
+          <div class="comments-info">
+             128回复/78人参与
+             <div class="reply-author" @click="handleClick()">回复楼主</div>
+          </div>
+          <ul class="comments-list">
+            <li>
+              <p class="user">
+                <span><img src="../../assets/dog.jpg" alt=""></span>
+                <span>隔壁老王</span>
+              </p>
+              <p class="comment">富强民主文明和谐</p>
+              <p class="operate">
+                <span><i class="iconfont">&#xe60c;</i> 30</span>
+                <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
+              </p>
+            </li>
+            <li>
+              <p class="user">
+                <span><img src="../../assets/dog.jpg" alt=""></span>
+                <span>隔壁老王</span>
+              </p>
+              <p class="comment">富强民主文明和谐</p>
+              <p class="operate">
+                <span><i class="iconfont">&#xe60c;</i> 30</span>
+                <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
+              </p>
+            </li>
+            <li>
+              <p class="user">
+                <span><img src="../../assets/dog.jpg" alt=""></span>
+                <span>隔壁老王</span>
+              </p>
+              <p class="comment">富强民主文明和谐</p>
+              <p class="operate">
+                <span><i class="iconfont">&#xe60c;</i> 30</span>
+                <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="fl side-right">
         <div class="sign">
@@ -57,14 +97,15 @@
         </Card>
       </div>
     </div>
-    <!-- <div @click="handleClick()">显示modal</div>
     <Dialog title="提示信息" :visible.sync="show">
-      <span>{{msg}}</span>
+      <form >
+        <input type="text" class="form-control" placeholder="写下你的评论...">
+      </form>
       <span slot="footer">
         <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
         <button type="button" class="btn btn-primary" @click="show = false">确定</button>
       </span>
-    </Dialog> -->
+    </Dialog>
     <Footer />
   </div>
 </template>
@@ -72,6 +113,7 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
+import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -90,6 +132,9 @@ export default {
     handleClick: function () {
       this.show = !this.show
     }
+  },
+  mounted: function () {
+    axios.get('http://localhost:8000/posts/').then((res) => { console.log(res) })
   }
 }
 </script>
@@ -104,6 +149,47 @@ export default {
     margin-top: 20px;
     background: #fff;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
+  }
+  .comments-info {
+    height: 45px;
+    line-height: 45px;
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    .reply-author {
+      float: right;
+      cursor: pointer;
+    }
+  }
+  .comments-list {
+    font-size: 14px;
+    padding: 10px;
+    li {
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 5px;
+    }
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 2px;
+      vertical-align: middle;
+    }
+    .user {
+      height: 30px;
+      line-height: 30px;
+    }
+    .comment {
+      line-height: 24px;
+      margin-bottom: 5px;
+    }
+    .operate {
+      color: #666;
+      span {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
   }
   .post-detail {
     width: 765px;
