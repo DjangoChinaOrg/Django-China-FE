@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import auth from './utils/auth'
 
 Vue.config.productionTip = false
 Vue.use(mavonEditor)
+
+auth.checkAuth();
+console.log(auth.getAuthHeader());
 
 /* eslint-disable no-new */
 new Vue({
