@@ -28,9 +28,9 @@
               </div>
           </div>
           <div class="log-box">
-            <span><router-link to="/register">注册</router-link></span>
+            <span><a href="http://localhost:8080/accounts/signup">注册</a></span>
             |
-            <span><router-link to="/login">登陆</router-link></span>
+            <span><a href="http://localhost:8080/accounts/login">登陆</a></span>
           </div>
         </div>
     </div>
