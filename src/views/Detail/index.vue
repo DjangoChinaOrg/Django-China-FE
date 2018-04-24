@@ -113,7 +113,6 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
-import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -132,9 +131,6 @@ export default {
     handleClick: function () {
       this.show = !this.show
     }
-  },
-  mounted: function () {
-    axios.get('http://localhost:8000/posts/').then((res) => { console.log(res) })
   }
 }
 </script>

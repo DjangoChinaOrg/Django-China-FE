@@ -10,6 +10,7 @@
         <div class="right-box">
           <div class="search-box">
             <input type="text" class="search">
+            <button class="btn btn-primary btn-sm search-btn"><i class="iconfont">&#xe63d;</i></button>
           </div>
           <button type="button" class="btn btn-primary btn-sm">
             <router-link to="/add">+ 发帖</router-link>
@@ -125,6 +126,17 @@ export default {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
+  .search-box {
+    position: relative;
+  }
+  .search-btn {
+    position: absolute;
+    height: 30px;
+    right: 1px;
+    top: 7px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
   .log-box {
     display: inline-block;
     width: 100px;
@@ -149,6 +161,9 @@ export default {
     position: relative;
     top: -10px;
     left: -6px;
+  }
+  .btn {
+    vertical-align: 1px;
   }
   .btn a {
     color: #fff;

@@ -182,6 +182,21 @@
             <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
           </div>
         </li>
+        <div class="paginator">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">上一页</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">下一页</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </ul>
       <div class="fl side-right">
         <div class="sign">
@@ -286,6 +301,16 @@ export default {
           height: 100%;
         }
       }
+    }
+  }
+  .paginator {
+    height: 45px;
+    line-height: 45px;
+    padding-left: 20px;
+    background: #fff;
+    font-size: 14px;
+    ul li {
+      height: initial;
     }
   }
   .post-title {
