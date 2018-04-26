@@ -1,6 +1,7 @@
 export default {
   user: {
-    authenticated: false
+    authenticated: false,
+    jwt: null
   },
 
   getJwtFromCookie () {
@@ -14,23 +15,22 @@ export default {
   },
 
   checkAuth () {
-    var jwt = localStorage.getItem('id_jwt')
+    var jwt = this.getJwtFromCookie()
     if (jwt) {
       this.user.authenticated = true
+      this.user.jwt = jwt
     } else {
-      jwt = this.getJwtFromCookie()
-      if (jwt) {
-        localStorage.setItem('id_jwt', jwt)
-        this.user.authenticated = true
-      } else {
-        this.user.authenticated = false
-      }
+      this.user.authenticated = false
     }
   },
 
   getAuthHeader () {
-    return {
-      'Authorization': 'Bearer ' + localStorage.getItem('id_jwt')
+    if (this.user.jwt) {
+      return {
+        'Authorization': 'Bearer ' + this.user.jwt
+      }
+    } else {
+      return {}
     }
   }
 }
