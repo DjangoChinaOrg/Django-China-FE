@@ -2,184 +2,23 @@
   <div class="wrapper">
     <div class="container clearfix">
       <ul class="post-list float-left">
-        <li>
+        <li v-for="post in post_list" :key="post.id">
           <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
+            <img :src="'http://api.dj-china.org/' + post.author.mugshot" alt="">
           </div>
           <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/1">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <p class="post-title"><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
             <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
+              <span class="post-author"><router-link :to="'/user/' + post.author.id">{{post.author.nickname}}</router-link></span>
               <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
+              <template v-for="(tag, index) in post.tags">
+                <span class="tag" :key="'tag' + tag.id + 1"><router-link to="/tag/1">{{tag.name}}</router-link></span>
+                <span v-if="index !== post.tags.length-1" class="separator" :key="index">·</span>
+              </template>
             </p>
           </div>
           <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/2">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/3">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/4">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
-          </div>
-        </li>
-        <li>
-          <div class="fl thumb">
-            <img src="../../assets/logo.png" alt="">
-          </div>
-          <div class="fl post-info">
-            <p class="post-title"><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            <p class="post-tag">
-              <span class="post-author"><router-link to="/user/1">隔壁老王</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/1">加密</router-link></span>
-              <span class="separator">·</span>
-              <span class="tag"><router-link to="/tag/2">深度学习</router-link></span>
-            </p>
-          </div>
-          <div class="post-view">
-            <span>125点击</span><span class="separator">·</span><span>5回复</span><span class="separator">·</span><span>3天前</span>
+            <span>{{post.views}} 点击 </span><span class="separator">·</span><span> {{post.reply_count}} 回复 </span><span class="separator">·</span><span> 三天前</span>
           </div>
         </li>
         <div class="paginator">
@@ -206,37 +45,12 @@
           <a href="" class="sign-btn">签到</a>
         </div>
         <Card title="热门标签" :more="true">
-          <a href="">Python</a>
-          <a href="">Django</a>
-          <a href="">深度学习</a>
-          <a href="">操作系统</a>
-          <a href="">前端</a>
-          <a href="">Git</a>
-          <a href="">区块链</a>
-          <a href="">Java</a>
+          <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
         <Card title="热门文章" :more="true">
           <ul>
-            <li>
-              <p><router-link to="/detail/1">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/2">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/3">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/4">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/5">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/6">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
-            </li>
-            <li>
-              <p><router-link to="/detail/7">你的加密货币有价值吗？这里有一个深度学习ICO诈骗鉴别系统</router-link></p>
+            <li v-for="post in pupolarPosts" :key="post.id">
+              <p><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
             </li>
           </ul>
         </Card>
@@ -257,6 +71,7 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
+import { getPostList, getPopularTags, getPopularPosts } from '@/api'
 export default {
   name: 'Home',
   components: {
@@ -266,15 +81,27 @@ export default {
   },
   data () {
     return {
-      post_list: ['1', '2'],
-      show: false,
-      msg: '确定删除当前数据吗'
+      post_list: [],
+      tags: [],
+      pupolarPosts: [],
+      show: false
     }
   },
   methods: {
     handleClick: function () {
       this.show = !this.show
     }
+  },
+  mounted: function () {
+    getPostList().then(res => {
+      this.post_list = res.data.data
+    })
+    getPopularTags().then(res => {
+      this.tags = res.data
+    })
+    getPopularPosts().then(res => {
+      this.pupolarPosts = res.data.data
+    })
   }
 }
 </script>
