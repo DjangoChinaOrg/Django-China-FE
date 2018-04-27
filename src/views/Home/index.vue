@@ -21,17 +21,23 @@
             <span>{{post.views}} 点击 </span><span class="separator">·</span><span> {{post.reply_count}} 回复 </span><span class="separator">·</span><span> 三天前</span>
           </div>
         </li>
-        <div class="paginator">
+        <div v-if="lastPage > 1" class="paginator">
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">上一页</a>
+              <li :class="['page-item', { disabled: currentPage === 1 }]">
+                <a v-on:click="changePage(currentPage - 1, $event)" class="page-link" href="#" tabindex="-1">
+                  上一页
+                </a>
               </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">下一页</a>
+              <li v-for="pageNumber in lastPage" class="page-item">
+                <a v-on:click="changePage(pageNumber, $event)" :class="['page-link', { active: pageNumber === currentPage }]" href="#">
+                  {{pageNumber}}
+                </a>
+              </li>
+              <li :class="['page-item', { disabled: currentPage === lastPage }]">
+                <a v-on:click="changePage(currentPage + 1, $event)" class="page-link" href="#" tabindex="-1">
+                  下一页
+                </a>
               </li>
             </ul>
           </nav>
@@ -84,18 +90,29 @@ export default {
       post_list: [],
       tags: [],
       pupolarPosts: [],
+      currentPage: 1,
+      lastPage: 1,
       show: false
     }
   },
   methods: {
     handleClick: function () {
       this.show = !this.show
+    },
+    fetchPosts: function(pageNumber) {
+      getPostList(this.currentPage).then(res => {
+        this.post_list = res.data.data
+        this.lastPage = res.data.last_page
+      })
+    },
+    changePage: function (pageNumber, event) {
+      event.preventDefault()
+      this.currentPage = pageNumber
+      this.fetchPosts(pageNumber)
     }
   },
   mounted: function () {
-    getPostList().then(res => {
-      this.post_list = res.data.data
-    })
+    this.fetchPosts(this.currentPage)
     getPopularTags().then(res => {
       this.tags = res.data
     })
@@ -138,6 +155,10 @@ export default {
     font-size: 14px;
     ul li {
       height: initial;
+
+      .active {
+        background: #efefef;
+      }
     }
   }
   .post-title {
