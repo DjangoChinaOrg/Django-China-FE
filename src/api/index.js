@@ -7,6 +7,20 @@ export function getPostList () {
   })
 }
 
+export function getPostDetail (postId) {
+  return request({
+    url: '/proxy/posts/' + postId + '/',
+    method: 'get'
+  })
+}
+
+export function getPostReplies (postId) {
+  return request({
+    url: '/proxy/posts/' + postId + '/replies/',
+    method: 'get'
+  })
+}
+
 export function getPopularTags () {
   return request({
     url: '/proxy/tags/popular/',
