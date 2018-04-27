@@ -17,14 +17,14 @@
              <div class="reply-author" @click="handleClick()">回复楼主</div>
           </div>
           <ul class="comments-list">
-            <li v-for="reply in replies" :key="reply.object_pk">
+            <li v-for="reply in replies" :key="reply.id">
               <p class="user">
                 <span><img v-bind:src="reply.user.mugshot" alt=""></span>
                 <span>{{reply.user.nickname}}</span>
               </p>
               <p class="comment">{{reply.comment}}</p>
               <ul class="comments-list">
-                <li v-for="descendant in reply.descendants">
+                <li v-for="descendant in reply.descendants" :key="descendant.id">
                   <p class="user">
                     <span><img v-bind:src="descendant.user.mugshot" alt=""></span>
                     <span>{{descendant.user.nickname}}</span>
