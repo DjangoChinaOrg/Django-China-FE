@@ -38,12 +38,7 @@
         </div>
       </ul>
       <div class="fl side-right">
-        <div class="sign">
-          <span class="icon gold">金</span>999
-          <span class="icon silver">银</span>999
-          <span class="icon copper">铜</span>999
-          <a href="" class="sign-btn">签到</a>
-        </div>
+        <BalanceBoard v-bind:userId="9"/>
         <Card title="热门标签" :more="true">
           <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
@@ -71,13 +66,15 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
+import BalanceBoard from '@/components/Balanceboard'
 import { getPostList, getPopularTags, getPopularPosts } from '@/api'
 export default {
   name: 'Home',
   components: {
     Dialog,
     Card,
-    Footer
+    Footer,
+    BalanceBoard
   },
   data () {
     return {
@@ -177,20 +174,6 @@ export default {
   .side-right {
     margin-left: 20px;
   }
-  /*签到*/
-  .sign {
-    width: 275px;
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    background: inherit;
-    background-color: rgba(255, 255, 255, 1);
-    border: none;
-    border-radius: 0px;
-    -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
-    -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3490196078);
-  }
   .icon {
     display: inline-block;
     width: 20px;
@@ -201,29 +184,6 @@ export default {
     color: #fff;
     text-align: center;
     border-radius: 50%;
-  }
-  .gold {
-    background: gold;
-  }
-  .silver {
-    background: #8e8e8e;
-  }
-  .copper {
-    background: orangered;
-  }
-  .sign-btn {
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background: rgba(30,144,255,.8);
-    color: #fff;
-    border-radius: 5px;
-    &:hover {
-      color: #fff;
-      background: rgba(30,144,255,1);
-    }
   }
   .hot-tags {
     width: 275px;
