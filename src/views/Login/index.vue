@@ -19,6 +19,7 @@
           <div class="form-group row">
             <div class="col-sm-12 register">
               <button type="submit" class="btn btn-info">登陆</button>
+              <button v-on:click="gitHubLogin($event)">GitHub 登陆</button>
             </div>
           </div>
         </form>
@@ -32,6 +33,16 @@ export default {
   data () {
     return {
       msg: '123'
+    }
+  },
+  methods: {
+    gitHubLogin (event) {
+      event.preventDefault()
+      window.open(
+      'https://github.com/login/oauth/authorize?client_id=7c9367c9c71111ec1b6c',
+      'GitHub登陆',
+      'width=600, height=400'
+      )
     }
   }
 }

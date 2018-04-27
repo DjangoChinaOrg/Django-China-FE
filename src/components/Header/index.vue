@@ -31,7 +31,7 @@
           <div class="log-box">
             <span><a href="http://localhost:8080/accounts/signup">注册</a></span>
             |
-            <span><a href="http://localhost:8080/accounts/login">登陆</a></span>
+            <span><router-link to="/login">登陆</router-link></span>
           </div>
         </div>
     </div>
