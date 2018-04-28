@@ -1,8 +1,8 @@
 import request from '../utils/request'
 
-export function getPostList () {
+export function getPostList (pageNumber) {
   return request({
-    url: '/proxy/posts/',
+    url: '/proxy/posts/' + '?page=' + pageNumber,
     method: 'get'
   })
 }
