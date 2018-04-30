@@ -10,20 +10,7 @@ var jwtDecode = require('jwt-decode')
 export default {
   user: {
     authenticated: false,
-    details: {
-      'id': null,
-      'username': null,
-      'nickname': null,
-      'email': null,
-      'dateJoined': null,
-      'mugshotUrl': null,
-      'ipJoined': null,
-      'lastLoginIp': null,
-      'isSuperuser': null,
-      'isStaff': null,
-      'postCount': null,
-      'replyCount': null
-    }
+    details: null
   },
 
   translateUserDetails (userServerData) {

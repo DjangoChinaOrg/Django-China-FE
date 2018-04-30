@@ -11,7 +11,6 @@ Vue.config.productionTip = false
 Vue.use(mavonEditor)
 
 auth.checkAuth()
-console.log(auth.getAuthHeader())
 
 /* eslint-disable no-new */
 new Vue({

@@ -44,7 +44,7 @@
         </div>
       </ul>
       <div class="fl side-right">
-        <BalanceBoard v-bind:userId="9"/>
+        <BalanceBoard v-if="this.user.authenticated" v-bind:userId="this.user.details.id"/>
         <Card title="热门标签" :more="true">
           <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
@@ -81,6 +81,9 @@ export default {
     Card,
     Footer,
     BalanceBoard
+  },
+  props: {
+    user: Object
   },
   data () {
     return {

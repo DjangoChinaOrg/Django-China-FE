@@ -49,10 +49,12 @@ import auth from '@/utils/auth'
 
 export default {
   name: 'Header',
+  props: {
+    user: Object
+  },
   data () {
     return {
       msg: '',
-      user: auth.user
     }
   },
   methods: {
