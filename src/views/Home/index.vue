@@ -4,7 +4,7 @@
       <ul class="post-list float-left">
         <li v-for="post in post_list" :key="post.id">
           <div class="fl thumb">
-            <img :src="'http://api.dj-china.org/' + post.author.mugshot" alt="">
+            <img :src="post.author.mugshot" alt="">
           </div>
           <div class="fl post-info">
             <p class="post-title"><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
