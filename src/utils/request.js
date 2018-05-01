@@ -1,4 +1,5 @@
 import axios from 'axios'
+import auth from '@/utils/auth'
 
 var instance = axios.create({
   baseURL: '',
@@ -7,6 +8,10 @@ var instance = axios.create({
 
 instance.interceptors.request.use(function (config) {
   // config.headers['token'] = ''
+  var jwtHeader = auth.getAuthHeader()
+  if (jwtHeader) {
+    config.headers['Authentication'] = jwtHeader
+  }
   return config
 }, function (error) {
 // Do something with request error

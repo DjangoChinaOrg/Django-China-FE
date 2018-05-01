@@ -1,36 +1,116 @@
+import Vue from 'vue'
+import axios from 'axios'
+import router from '@/router'
+
+var request = axios.create({
+  baseURL: '',
+  timeout: 10000
+})
+var jwtDecode = require('jwt-decode')
+
 export default {
   user: {
-    authenticated: false
+    authenticated: false,
+    details: null
   },
 
-  getJwtFromCookie () {
-    var value = '; ' + document.cookie
-    var parts = value.split('; JWT=')
-    if (parts.length === 2) {
-      return parts.pop().split(';').shift()
+  translateUserDetails (userServerData) {
+    return {
+      'id': userServerData.id,
+      'username': userServerData.username,
+      'nickname': userServerData.nickname,
+      'email': userServerData.email,
+      'dateJoined': userServerData.date_joined,
+      'mugshotUrl': userServerData.mugshot_url,
+      'ipJoined': userServerData.ip_joined,
+      'lastLoginIp': userServerData.last_login_ip,
+      'isSuperuser': userServerData.is_superuser,
+      'isStaff': userServerData.is_staff,
+      'postCount': userServerData.post_count,
+      'replyCount': userServerData.reply_count
+    }
+  },
+
+  login (creds, redirect) {
+    return request({
+      url: '/proxy/rest-auth/login/',
+      data: creds,
+      method: 'POST'
+    }).then(res => {
+      localStorage.setItem('id_jwt', res.data.token)
+
+      Vue.set(this.user, 'authenticated', true)
+      Vue.set(this.user, 'details', this.translateUserDetails(res.data.user))
+
+      if (redirect) {
+        router.push(redirect)
+      } else {
+        router.push('/')
+      }
+    })
+  },
+
+  refreshJwt (jwt) {
+    return request({
+      url: '/proxy/rest-auth/refresh-jwt/'
+    }).then(res => {
+      localStorage.setItem('id_jwt', res.data)
+    })
+  },
+
+  signup (creds) {
+    request.post('/proxy/rest-auth/signup/', creds, (data) => {
+      alert('Email已发送到邮箱')
+    }).error((err) => {
+      console.log(err)
+    })
+  },
+
+  logout () {
+    localStorage.removeItem('id_jwt')
+    Vue.set(this.user, 'authenticated', false)
+
+    location.reload()
+  },
+
+  inspectToken (jwt) {
+    var decodedJwt = jwtDecode(jwt)
+    var exp = decodedJwt.exp
+    var currentTime = new Date().getTime() / 1000
+    if (currentTime - exp < 1800) {
+      // 刷新jwt
+      return true
+    } else if (currentTime > exp) {
+      // 暂时不用刷新
+      return true
     } else {
-      return false
+      // jwt已经过期
+      this.logout()
     }
   },
 
   checkAuth () {
     var jwt = localStorage.getItem('id_jwt')
-    if (jwt) {
-      this.user.authenticated = true
+    if (jwt && this.inspectToken(jwt)) {
+      Vue.set(this.user, 'authenticated', true)
+      var decodedJwt = jwtDecode(jwt)
+      request({
+        url: '/proxy/users/' + decodedJwt.user_id + '/',
+        method: 'GET'
+      }).then((res) => {
+        Vue.set(this.user, 'details', this.translateUserDetails(res.data))
+      })
     } else {
-      jwt = this.getJwtFromCookie()
-      if (jwt) {
-        localStorage.setItem('id_jwt', jwt)
-        this.user.authenticated = true
-      } else {
-        this.user.authenticated = false
-      }
+      Vue.set(this.user, 'authenticated', false)
     }
   },
 
   getAuthHeader () {
-    return {
-      'Authorization': 'Bearer ' + localStorage.getItem('id_jwt')
+    var jwt = localStorage.getItem('id_jwt')
+    if (jwt) {
+      return 'Bearer ' + localStorage.getItem('id_jwt')
+    } else {
+      return ''
     }
   }
 }
