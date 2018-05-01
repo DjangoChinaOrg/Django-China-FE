@@ -6,3 +6,10 @@ export function getBalance (userId) {
     method: 'get'
   })
 }
+
+export function getUserDetails (userId) {
+  return request({
+    url: '/proxy/users/' + userId + '/',
+    method: 'get'
+  })
+}

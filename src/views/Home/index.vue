@@ -29,7 +29,7 @@
                   上一页
                 </a>
               </li>
-              <li v-for="pageNumber in lastPage" class="page-item">
+              <li v-bind:key="pageNumber" v-for="pageNumber in lastPage" class="page-item">
                 <a v-on:click="changePage(pageNumber, $event)" :class="['page-link', { active: pageNumber === currentPage }]" href="#">
                   {{pageNumber}}
                 </a>
@@ -99,7 +99,7 @@ export default {
     handleClick: function () {
       this.show = !this.show
     },
-    fetchPosts: function(pageNumber) {
+    fetchPosts: function (pageNumber) {
       getPostList(this.currentPage).then(res => {
         this.post_list = res.data.data
         this.lastPage = res.data.last_page

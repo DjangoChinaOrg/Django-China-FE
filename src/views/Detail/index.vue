@@ -4,49 +4,36 @@
       <div class="float-left">
         <div class="post-detail">
           <div class="post-header">
-            <h1 class="post-title">Django-中文社区，开发团队介绍</h1>
+            <h1 class="post-title">{{post.title}}</h1>
             <div class="post-info">
-              <span>Django中文社区</span><span class="separator"> · </span><span>1000点击</span><span class="separator"> · </span><span>1个月前</span>
+              <span>{{post.author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
             </div>
           </div>
-          <div class="post-body">当前文章id：{{$route.params.id}}</div>
+          <div class="post-body">{{post.body}}</div>
         </div>
         <div class="post-comments">
           <div class="comments-info">
-             128回复/78人参与
+             {{post.reply_count}}回复/{{post.participants_count}}人参与
              <div class="reply-author" @click="handleClick()">回复楼主</div>
           </div>
           <ul class="comments-list">
-            <li>
+            <li v-for="reply in replies" :key="reply.id">
               <p class="user">
-                <span><img src="../../assets/dog.jpg" alt=""></span>
-                <span>隔壁老王</span>
+                <span><img v-bind:src="reply.user.mugshot" alt=""></span>
+                <span>{{reply.user.nickname}}</span>
               </p>
-              <p class="comment">富强民主文明和谐</p>
+              <p class="comment">{{reply.comment}}</p>
+              <ul class="comments-list">
+                <li v-for="descendant in reply.descendants" :key="descendant.id">
+                  <p class="user">
+                    <span><img v-bind:src="descendant.user.mugshot" alt=""></span>
+                    <span>{{descendant.user.nickname}}</span>
+                  </p>
+                  <p class="comment">{{descendant.comment}}</p>
+                </li>
+              </ul>
               <p class="operate">
-                <span><i class="iconfont">&#xe60c;</i> 30</span>
-                <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
-              </p>
-            </li>
-            <li>
-              <p class="user">
-                <span><img src="../../assets/dog.jpg" alt=""></span>
-                <span>隔壁老王</span>
-              </p>
-              <p class="comment">富强民主文明和谐</p>
-              <p class="operate">
-                <span><i class="iconfont">&#xe60c;</i> 30</span>
-                <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
-              </p>
-            </li>
-            <li>
-              <p class="user">
-                <span><img src="../../assets/dog.jpg" alt=""></span>
-                <span>隔壁老王</span>
-              </p>
-              <p class="comment">富强民主文明和谐</p>
-              <p class="operate">
-                <span><i class="iconfont">&#xe60c;</i> 30</span>
+                <span><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
                 <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
               </p>
             </li>
@@ -113,8 +100,9 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
+import { getPostDetail, getPostReplies } from '@/api'
 export default {
-  name: 'Home',
+  name: 'Detail',
   components: {
     Dialog,
     Card,
@@ -122,15 +110,18 @@ export default {
   },
   data () {
     return {
-      post_list: ['1', '2'],
-      show: false,
-      msg: '确定删除当前数据吗'
+      post: {},
+      replies: []
     }
   },
-  methods: {
-    handleClick: function () {
-      this.show = !this.show
-    }
+  mounted () {
+    getPostDetail(this.$route.params.id).then(res => {
+      this.post = res.data
+    }).then(() => {
+      getPostReplies(this.post.id).then(res => {
+        this.replies = res.data.data
+      })
+    })
   }
 }
 </script>
