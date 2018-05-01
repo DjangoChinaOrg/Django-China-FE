@@ -4,7 +4,7 @@
       <ul class="post-list float-left">
         <li v-for="post in post_list" :key="post.id">
           <div class="fl thumb">
-            <img :src="'http://api.dj-china.org/' + post.author.mugshot" alt="">
+            <img :src="post.author.mugshot" alt="">
           </div>
           <div class="fl post-info">
             <p class="post-title"><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
@@ -44,8 +44,8 @@
         </div>
       </ul>
       <div class="fl side-right">
-        <BalanceBoard v-bind:userId="9"/>
-        <Card title="热门标签">
+        <BalanceBoard v-if="this.user.authenticated && this.user.details" v-bind:userId="this.user.details.id"/>
+        <Card title="热门标签" :more="true">
           <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
         <Card title="热门文章">
@@ -82,6 +82,14 @@ export default {
     Footer,
     BalanceBoard
   },
+  props: {
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       post_list: [],
@@ -108,7 +116,7 @@ export default {
       this.fetchPosts(pageNumber)
     }
   },
-  mounted: function () {
+  created: function () {
     this.fetchPosts(this.currentPage)
     getPopularTags().then(res => {
       this.tags = res.data

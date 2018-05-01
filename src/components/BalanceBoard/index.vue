@@ -17,9 +17,7 @@ export default {
       copper: 0
     }
   },
-  props: {
-    userId: Number
-  },
+  props: ['userId'],
   methods: {
     fetchCurrencies: function () {
       getBalance(this.userId).then(res => {

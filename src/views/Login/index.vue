@@ -7,18 +7,18 @@
           <div class="form-group row">
             <label for="username" class="col-sm-3 col-form-label">用户名：</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="username" placeholder="">
+              <input v-model="username" type="text" class="form-control" id="username" placeholder="">
             </div>
           </div>
           <div class="form-group row">
             <label for="password" class="col-sm-3 col-form-label">密码：</label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" id="passwrod" placeholder="">
+              <input v-model="password" type="password" class="form-control" id="passwrod" placeholder="">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-12 register">
-              <button type="submit" class="btn btn-info">登陆</button>
+              <button v-on:click="onSubmit($event)" type="submit" class="btn btn-info">登陆</button>
             </div>
           </div>
         </form>
@@ -27,11 +27,27 @@
   </div>
 </template>
 <script>
+import auth from '@/utils/auth'
+
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
-      msg: '123'
+      username: '',
+      password: '',
+      msg: ''
+    }
+  },
+  methods: {
+    onSubmit: function (event) {
+      event.preventDefault()
+      auth.login({
+        username: this.username,
+        password: this.password
+      }).catch((error) => {
+        this.msg = error
+        console.log(error)
+      })
     }
   }
 }

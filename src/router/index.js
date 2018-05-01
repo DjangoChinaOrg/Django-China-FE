@@ -12,6 +12,7 @@ import User from '@/views/User'
 import Publish from '@/views/Publish'
 import Notification from '@/views/Notification'
 import HomePage from '@/views/HomePage'
+import Login from '@/views/Login'
 Vue.use(Router)
 
 export default new Router({
@@ -74,6 +75,11 @@ export default new Router({
       path: '/homepage',
       name: 'homepage',
       component: HomePage
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })

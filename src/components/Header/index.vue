@@ -26,21 +26,37 @@
                 <div><a href=""><i class="iconfont">&#xe6e3;</i> 退出</a></div>
               </div>
           </div>
-          <div class="log-box" v-if="!auth">
-            <span><a href="http://localhost:8080/accounts/signup">注册</a></span>
-            |
-            <span><a href="http://localhost:8080/accounts/login">登陆</a></span>
-          </div>
+          <template v-if="this.user.authenticated && this.user.details">
+            <div class="log-box">
+              <h2>{{ this.user.details.nickname }}</h2>
+            </div>
+            <span><a href="" v-on:click="onLogout">登出</a></span>
+          </template>
+          <template v-else>
+            <div class="log-box">
+              <span><router-link to="/signup">注册</router-link></span>
+              |
+              <span><router-link to="/login">登陆</router-link></span>
+            </div>
+          </template>
         </div>
     </div>
   </div>
 </template>
 
 <script>
-import auth from '@/utils/auth.js'
+import auth from '@/utils/auth'
 
 export default {
   name: 'Header',
+  props: {
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
       auth: auth.user.authenticated
@@ -49,6 +65,9 @@ export default {
   methods: {
     handleClick: function () {
       alert(1)
+    },
+    onLogout: function () {
+      auth.logout()
     }
   }
 }
