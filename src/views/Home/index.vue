@@ -44,7 +44,7 @@
         </div>
       </ul>
       <div class="fl side-right">
-        <BalanceBoard v-if="this.user.authenticated" v-bind:userId="this.user.details.id"/>
+        <BalanceBoard v-if="this.user.authenticated && this.user.details" v-bind:userId="this.user.details.id"/>
         <Card title="热门标签" :more="true">
           <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
@@ -83,7 +83,12 @@ export default {
     BalanceBoard
   },
   props: {
-    user: Object
+    user: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    }
   },
   data () {
     return {
@@ -111,7 +116,7 @@ export default {
       this.fetchPosts(pageNumber)
     }
   },
-  mounted: function () {
+  created: function () {
     this.fetchPosts(this.currentPage)
     getPopularTags().then(res => {
       this.tags = res.data

@@ -30,16 +30,6 @@ export default {
     }
   },
 
-  getJwtFromCookie () {
-    var value = '; ' + document.cookie
-    var parts = value.split('; JWT=')
-    if (parts.length === 2) {
-      return parts.pop().split(';').shift()
-    } else {
-      return false
-    }
-  },
-
   login (creds, redirect) {
     return request({
       url: '/proxy/rest-auth/login/',
@@ -71,6 +61,7 @@ export default {
     request.post('/proxy/rest-auth/signup/', creds, (data) => {
       alert('Email已发送到邮箱')
     }).error((err) => {
+      console.log(err)
     })
   },
 
@@ -81,14 +72,14 @@ export default {
     location.reload()
   },
 
-  inspectToken (jwt){
+  inspectToken (jwt) {
     var decodedJwt = jwtDecode(jwt)
     var exp = decodedJwt.exp
-    var current_time = new Date().getTime() / 1000;
-    if(current_time - exp < 1800){
+    var currentTime = new Date().getTime() / 1000
+    if (currentTime - exp < 1800) {
       // 刷新jwt
       return true
-    } else if (current_time > exp){
+    } else if (currentTime > exp) {
       // 暂时不用刷新
       return true
     } else {
