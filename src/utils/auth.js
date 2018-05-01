@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import axios from 'axios'
 import router from '@/router'
 
@@ -38,8 +39,8 @@ export default {
     }).then(res => {
       localStorage.setItem('id_jwt', res.data.token)
 
-      this.user.authenticated = true
-      this.user.details = this.translateUserDetails(res.data.user)
+      Vue.set(this.user, 'authenticated', true)
+      Vue.set(this.user, 'details', this.translateUserDetails(res.data.user))
 
       if (redirect) {
         router.push(redirect)
@@ -67,7 +68,7 @@ export default {
 
   logout () {
     localStorage.removeItem('id_jwt')
-    this.user.authenticated = false
+    Vue.set(this.user, 'authenticated', false)
 
     location.reload()
   },
@@ -91,16 +92,16 @@ export default {
   checkAuth () {
     var jwt = localStorage.getItem('id_jwt')
     if (jwt && this.inspectToken(jwt)) {
-      this.user.authenticated = true
+      Vue.set(this.user, 'authenticated', true)
       var decodedJwt = jwtDecode(jwt)
       request({
         url: '/proxy/users/' + decodedJwt.user_id + '/',
         method: 'GET'
       }).then((res) => {
-        this.user.details = this.translateUserDetails(res.data)
+        Vue.set(this.user, 'details', this.translateUserDetails(res.data))
       })
     } else {
-      this.user.authenticated = false
+      Vue.set(this.user, 'authenticated', false)
     }
   },
 
