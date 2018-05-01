@@ -34,3 +34,34 @@ export function getPopularPosts () {
     method: 'get'
   })
 }
+
+export function publishPost (data) {
+  return request({
+    url: '/proxy/posts/',
+    method: 'post',
+    data
+  })
+}
+export function editPost () {
+  return request({
+    url: '/proxy/posts/',
+    method: 'put'
+  })
+}
+
+export function getTagList () {
+  return request({
+    url: '/proxy/tags/popular/',
+    method: 'get'
+  })
+}
+
+export function getEmailList (params) {
+  return request({
+    url: '/proxy/users/email/',
+    method: 'get',
+    params: {
+      ...params
+    }
+  })
+}

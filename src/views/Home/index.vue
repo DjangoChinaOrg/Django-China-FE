@@ -12,7 +12,7 @@
               <span class="post-author"><router-link :to="'/user/' + post.author.id">{{post.author.nickname}}</router-link></span>
               <span class="separator">·</span>
               <template v-for="(tag, index) in post.tags">
-                <span class="tag" :key="'tag' + tag.id + 1"><router-link to="/tag/1">{{tag.name}}</router-link></span>
+                <span class="tag" :key="'tag' + tag.id + 1"><router-link :to="'/tag/' + tag.id">{{tag.name}}</router-link></span>
                 <span v-if="index !== post.tags.length-1" class="separator" :key="index">·</span>
               </template>
             </p>
@@ -29,7 +29,7 @@
                   上一页
                 </a>
               </li>
-              <li v-bind:key="pageNumber" v-for="pageNumber in lastPage" class="page-item">
+              <li v-for="pageNumber in lastPage" class="page-item" :key="pageNumber">
                 <a v-on:click="changePage(pageNumber, $event)" :class="['page-link', { active: pageNumber === currentPage }]" href="#">
                   {{pageNumber}}
                 </a>
@@ -45,10 +45,10 @@
       </ul>
       <div class="fl side-right">
         <BalanceBoard v-bind:userId="9"/>
-        <Card title="热门标签" :more="true">
+        <Card title="热门标签">
           <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
-        <Card title="热门文章" :more="true">
+        <Card title="热门文章">
           <ul>
             <li v-for="post in pupolarPosts" :key="post.id">
               <p><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
@@ -126,6 +126,8 @@ export default {
   }
   .post-list {
     width: 765px;
+    min-height: 500px;
+    background: #fff;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
     li {
       position: relative;

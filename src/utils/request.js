@@ -1,8 +1,10 @@
 import axios from 'axios'
+import auth from '@/utils/auth'
 
 var instance = axios.create({
   baseURL: '',
-  timeout: 10000
+  timeout: 10000,
+  headers: auth.getAuthHeader()
 })
 
 instance.interceptors.request.use(function (config) {
