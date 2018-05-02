@@ -5,7 +5,7 @@
         <a href="">关于</a>
         <a href="">联系我们</a>
         <a href="">我们的愿景</a>
-        <a href="">我们的团队</a>
+        <router-link :to="'/team'">我们的团队</router-link>
       </div>
       <div class="we">
         <p>Django 中国</p>
