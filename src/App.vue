@@ -1,16 +1,23 @@
 <template>
   <div id="app">
-    <Header />
+    <Header v-bind:user="this.user"/>
     <div class="content">
-      <router-view/>
+      <router-view v-bind:user="this.user"/>
     </div>
   </div>
 </template>
 
 <script>
+import auth from '@/utils/auth'
 import Header from '@/components/Header'
+
 export default {
   name: 'App',
+  data: function () {
+    return {
+      user: auth.user
+    }
+  },
   components: {
     Header
   }

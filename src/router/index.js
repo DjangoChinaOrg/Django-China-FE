@@ -12,6 +12,7 @@ import User from '@/views/User'
 import Publish from '@/views/Publish'
 import Notification from '@/views/Notification'
 import HomePage from '@/views/HomePage'
+import Login from '@/views/Login'
 import Team from '@/views/Team'
 Vue.use(Router)
 
@@ -80,6 +81,11 @@ export default new Router({
       path: '/team',
       name: 'team',
       component: Team
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
