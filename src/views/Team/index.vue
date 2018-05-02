@@ -109,7 +109,7 @@ export default {
           forumURL: 'users/1'
         },
         {
-          photo: require('../../assets/team/omit.png'),
+          photo: require('../../assets/team/yitao-small.jpg'),
           name: '熊翼韬',
           organization: 'BitSight Technology',
           email: null,
@@ -136,7 +136,7 @@ export default {
           forumURL: 'users/1'
         },
         {
-          photo: require('../../assets/team/omit.png'),
+          photo: require('../../assets/team/yitao-small.jpg'),
           name: '熊翼韬',
           organization: 'BitSight Technology',
           email: null,
