@@ -65,3 +65,13 @@ export function getEmailList (params) {
     }
   })
 }
+
+export function getNoticeList (params) {
+  return request({
+    url: '/proxy/notifications/',
+    method: 'get',
+    params: {
+      ...params
+    }
+  })
+}
