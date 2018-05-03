@@ -12,7 +12,7 @@
     <div class="post-comments">
       <div class="comments-info">
           {{post.reply_count}}回复/{{post.participants_count}}人参与
-          <div class="reply-author" @click="handleClick()">回复楼主</div>
+          <div class="reply-author" @click="onClickReply(post.id)">回复楼主</div>
       </div>
       <ul class="comments-list">
         <li v-for="reply in replies" :key="reply.id">
@@ -32,18 +32,18 @@
           </ul>
           <p class="operate">
             <span><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
-            <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
+            <span @click="onClickReply(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
           </p>
         </li>
       </ul>
     </div>
-    <Dialog title="提示信息" :visible.sync="show">
+    <Dialog title="提示信息" :visible.sync="showReplyModal">
       <form >
-        <input type="text" class="form-control" placeholder="写下你的评论...">
+        <input v-model="newReply.body" type="text" class="form-control" placeholder="写下你的评论...">
       </form>
       <span slot="footer">
-        <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
-        <button type="button" class="btn btn-primary" @click="show = false">确定</button>
+        <button type="button" class="btn btn-secondary" @click="showReplyModal = false">取消</button>
+        <button type="button" class="btn btn-primary" @click="onSubmitReply()">确定</button>
       </span>
     </Dialog>
     <Footer />
@@ -53,7 +53,7 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
-import { getPostDetail, getPostReplies } from '@/api'
+import { getPostDetail, getPostReplies, publishReply } from '@/api'
 export default {
   name: 'Detail',
   components: {
@@ -65,22 +65,39 @@ export default {
     return {
       post: {},
       replies: [],
-      show: false
+      showReplyModal: false,
+      newReply: {
+        postId: '',
+        body: ''
+      }
     }
   },
   methods: {
-    handleClick: function () {
-      this.show = !this.show
+    fetchPostDetail: function () {
+      getPostDetail(this.$route.params.id).then(res => {
+        this.post = res.data
+      }).then(() => {
+        getPostReplies(this.post.id).then(res => {
+          this.replies = res.data.data
+        })
+      })
+    },
+    onClickReply: function (postId) {
+      this.newReply = {
+        postId,
+        body: ''
+      }
+      this.showReplyModal = true
+    },
+    onSubmitReply: function () {
+      publishReply(this.newReply.postId, this.newReply.body).then(() => {
+        this.showReplyModal = false
+        this.fetchPostDetail()
+      })
     }
   },
   mounted () {
-    getPostDetail(this.$route.params.id).then(res => {
-      this.post = res.data
-    }).then(() => {
-      getPostReplies(this.post.id).then(res => {
-        this.replies = res.data.data
-      })
-    })
+    this.fetchPostDetail()
   }
 }
 </script>

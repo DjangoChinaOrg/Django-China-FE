@@ -21,6 +21,18 @@ export function getPostReplies (postId) {
   })
 }
 
+export function publishReply (postId, replyBody) {
+  var data = {
+    object_pk: postId,
+    comment: replyBody
+  }
+  return request({
+    url: '/proxy/replies/',
+    method: 'post',
+    data
+  })
+}
+
 export function getPopularTags () {
   return request({
     url: '/proxy/tags/popular/',
