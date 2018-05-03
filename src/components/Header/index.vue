@@ -19,11 +19,9 @@
             <router-link to="/notification"><i class="iconfont">&#xe634;</i><span class="badge badge-danger">5</span></router-link>
           </div>
           <div class="avatar">
-              <router-link to="/homepage">
-                <img src="../../assets/logo.png" alt="">
-              </router-link>
+              <img src="../../assets/logo.png" alt="">
               <div class="dropdown">
-                <div><router-link to="/profile/basic"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
+                <div><router-link to="/homepage"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
                 <div><router-link to="/profile/basic"><i class="iconfont">&#xe675;</i> 设置</router-link></div>
                 <div><a href=""><i class="iconfont">&#xe6e3;</i> 退出</a></div>
               </div>
@@ -61,7 +59,7 @@ export default {
   },
   data () {
     return {
-      msg: ''
+      auth: auth.user.authenticated
     }
   },
   methods: {
@@ -109,19 +107,24 @@ export default {
     cursor: pointer;
     position: relative;
     img {
-      width: 100%;
+      width: 80%;
       vertical-align: middle;
+    }
+    &:hover {
+      .dropdown {
+        display: block;
+      }
     }
   }
   .dropdown {
     display: none;
     position: absolute;
     left: -30px;
-    top: 50px;
+    top: 45px;
     width: 110px;
     padding: 5px 0;
     background: #fff;
-    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+    box-shadow: 0 2px 20px rgba(26,26,26,.1);
     border-radius: 2px;
     &>div {
       height: 30px;

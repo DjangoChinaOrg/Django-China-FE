@@ -1,5 +1,5 @@
 import axios from 'axios'
-import auth from '@/utils/auth'
+import auth from './auth'
 
 var instance = axios.create({
   baseURL: '',

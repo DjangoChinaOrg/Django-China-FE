@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // components
 import Home from '@/views/Home'
+import HomeChild from '@/views/Home/Home'
 import Detail from '@/views/Detail'
 import Profile from '@/views/Profile'
 import Basic from '@/views/Profile/Basic'
@@ -22,12 +23,19 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: Home
-    },
-    {
-      path: '/detail/:id',
-      name: 'detail',
-      component: Detail
+      component: Home,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: HomeChild
+        },
+        {
+          path: 'detail/:id',
+          name: 'detail',
+          component: Detail
+        }
+      ]
     },
     {
       path: '/profile',

@@ -24,12 +24,18 @@
   </div>
 </template>
 <script>
+import { getEmailList } from '@/api'
 export default {
   name: 'EmailSet',
   data () {
     return {
-      msg: '邮箱设置'
+      emailList: []
     }
+  },
+  mounted: function () {
+    getEmailList().then(res => {
+      console.log(res)
+    })
   }
 }
 </script>
