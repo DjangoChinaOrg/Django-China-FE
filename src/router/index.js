@@ -15,6 +15,8 @@ import Notification from '@/views/Notification'
 import HomePage from '@/views/HomePage'
 import Login from '@/views/Login'
 import GitHubLoginSuccess from '@/views/GitHubLoginSuccess'
+import Team from '@/views/Team'
+
 Vue.use(Router)
 
 export default new Router({
@@ -84,6 +86,11 @@ export default new Router({
       path: '/homepage',
       name: 'homepage',
       component: HomePage
+    },
+    {
+      path: '/team',
+      name: 'team',
+      component: Team
     },
     {
       path: '/login',
