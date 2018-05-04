@@ -14,7 +14,9 @@ import Publish from '@/views/Publish'
 import Notification from '@/views/Notification'
 import HomePage from '@/views/HomePage'
 import Login from '@/views/Login'
+import GitHubLoginSuccess from '@/views/GitHubLoginSuccess'
 import Team from '@/views/Team'
+
 Vue.use(Router)
 
 export default new Router({
@@ -94,6 +96,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/social-auth/github/loginsuccess',
+      name: 'github login success',
+      component: GitHubLoginSuccess
     }
   ]
 })
