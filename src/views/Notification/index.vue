@@ -33,11 +33,40 @@
 </template>
 
 <script>
+import { getNoticeList, deleteNotice, makeSingleNoticeAsRead, makeAllNoticesAsRead } from '@/api'
 export default {
   name: 'Notification',
   data () {
     return {
-      msg: 111
+      msg: 111,
+      notifications: []
+    }
+  },
+  mounted () {
+    this.getNotifications()
+  },
+  methods: {
+    getNotifications (parms) {
+      getNoticeList().then(res => {
+        // console.log(res)
+        this.notifications = res.data.data
+        // console.log(this.notifications)
+      })
+    },
+    deleteNotification (id) {
+      deleteNotice(id).then(res => {
+        console.log(res.status)
+      })
+    },
+    mekeAllNotificationAsRead () {
+      makeAllNoticesAsRead().then(res => {
+        console.log(res.status)
+      })
+    },
+    mekeSingleNotificationsAsRead (id) {
+      makeSingleNoticeAsRead(id).then(res => {
+        console.log(res.status)
+      })
     }
   }
 }

@@ -75,3 +75,24 @@ export function getNoticeList (params) {
     }
   })
 }
+
+export function deleteNotice (id) {
+  return request({
+    url: '/proxy/notifications/' + id,
+    method: 'delete'
+  })
+}
+
+export function makeSingleNoticeAsRead (id) {
+  return request({
+    url: '/proxy/notifications/' + id,
+    method: 'patch'
+  })
+}
+
+export function makeAllNoticesAsRead () {
+  return request({
+    url: '/proxy/notifications/make_all_as_read',
+    method: 'post'
+  })
+}
