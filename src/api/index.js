@@ -78,15 +78,15 @@ export function getNoticeList (params) {
 
 export function deleteNotice (id) {
   return request({
-    url: '/proxy/notifications/' + id,
+    url: '/proxy/notifications/' + id + '/',
     method: 'delete'
   })
 }
 
 export function makeSingleNoticeAsRead (id) {
   return request({
-    url: '/proxy/notifications/' + id,
-    method: 'patch'
+    url: '/proxy/notifications/' + id + '/',
+    method: 'put'
   })
 }
 
