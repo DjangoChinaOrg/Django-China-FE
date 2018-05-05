@@ -16,6 +16,8 @@ import HomePage from '@/views/HomePage'
 import Login from '@/views/Login'
 import GitHubLoginSuccess from '@/views/GitHubLoginSuccess'
 import Team from '@/views/Team'
+import Tags from '@/views/Tags'
+import TagPosts from '@/views/TagPosts'
 
 Vue.use(Router)
 
@@ -36,6 +38,11 @@ export default new Router({
           path: 'detail/:id',
           name: 'detail',
           component: Detail
+        },
+        {
+          path: 'tags/:id(\\d+)',
+          name: 'tag-posts',
+          component: TagPosts
         }
       ]
     },
@@ -101,6 +108,11 @@ export default new Router({
       path: '/social-auth/github/loginsuccess',
       name: 'github login success',
       component: GitHubLoginSuccess
+    },
+    {
+      path: '/tags',
+      name: 'tags',
+      component: Tags
     }
   ]
 })

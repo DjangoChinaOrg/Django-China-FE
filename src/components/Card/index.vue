@@ -2,7 +2,7 @@
   <div class="hot-tags">
     <div class="hot-tags-header">
       <h3>{{title}}</h3>
-      <span v-if="more">全部>></span>
+      <router-link :to="moreUrl" v-if="more">全部>></router-link>
     </div>
     <div class="tags-box">
       <slot></slot>
@@ -14,7 +14,11 @@ export default {
   name: 'Card',
   props: {
     title: String,
-    more: Boolean
+    more: Boolean,
+    moreUrl: {
+      type: String,
+      required: false
+    }
   },
   data () {
     return {
@@ -41,7 +45,7 @@ export default {
       font-weight: bolder;
       float: left;
     }
-    span {
+    span,a{
       float: right;
     }
   }

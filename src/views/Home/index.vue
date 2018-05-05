@@ -6,8 +6,8 @@
       </div>
       <div class="fl side-right">
         <BalanceBoard v-if="this.user.authenticated && this.user.details" v-bind:userId="this.user.details.id"/>
-        <Card title="热门标签" :more="true">
-          <router-link v-for="(tag, index) in tags" :to="'tag' + tag.id" :key="index">{{tag.name}}</router-link>
+        <Card title="热门标签" :more="true" :moreUrl="'/tags'">
+          <router-link v-for="(tag, index) in tags" :to="'/tags/' + tag.id" :key="index">{{tag.name}}</router-link>
         </Card>
         <Card title="热门文章">
           <ul>

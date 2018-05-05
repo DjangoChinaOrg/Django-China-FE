@@ -28,6 +28,20 @@ export function getPopularTags () {
   })
 }
 
+export function getTagList () {
+  return request({
+    url: '/proxy/tags/',
+    method: 'get'
+  })
+}
+
+export function getTagPosts (tagId, pageNumber) {
+  return request({
+    url: '/proxy/posts/' + '?tags=' + tagId + '&' + 'page=' + pageNumber,
+    method: 'get'
+  })
+}
+
 export function getPopularPosts () {
   return request({
     url: '/proxy/posts/popular/',
@@ -46,13 +60,6 @@ export function editPost () {
   return request({
     url: '/proxy/posts/',
     method: 'put'
-  })
-}
-
-export function getTagList () {
-  return request({
-    url: '/proxy/tags/popular/',
-    method: 'get'
   })
 }
 

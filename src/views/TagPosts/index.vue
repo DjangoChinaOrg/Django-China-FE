@@ -11,7 +11,7 @@
           <span class="separator">·</span>
           <template v-for="(tag, index) in post.tags">
             <span class="tag" :key="'tag' + tag.id + 1"><router-link :to="'/tags/' + tag.id">{{tag.name}}</router-link></span>
-            <span v-if="index !== post.tags.length-1" class="separator" :key="index">·</span>
+            <span v-if="Home !== post.tags.length-1" class="separator" :key="index">·</span>
           </template>
         </p>
       </div>
@@ -44,20 +44,24 @@
 </template>
 
 <script>
-import { getPostList } from '@/api'
+import { getTagPosts } from '@/api'
 export default {
-  name: 'HomeChild',
+  name: 'tag-posts',
   data () {
     return {
       post_list: [],
-      pupolarPosts: [],
       currentPage: 1,
       lastPage: 1
     }
   },
+  computed: {
+    tagId () {
+      return this.$route.params.id
+    }
+  },
   methods: {
-    fetchPosts: function (pageNumber) {
-      getPostList(this.currentPage).then(res => {
+    fetchTagPosts: function (pageNumber) {
+      getTagPosts(this.$route.params.id, this.currentPage).then(res => {
         this.post_list = res.data.data
         this.lastPage = res.data.last_page
       })
@@ -65,11 +69,16 @@ export default {
     changePage: function (pageNumber, event) {
       event.preventDefault()
       this.currentPage = pageNumber
-      this.fetchPosts(pageNumber)
+      this.fetchTagPosts(pageNumber)
     }
   },
   created: function () {
-    this.fetchPosts(this.currentPage)
+    this.fetchTagPosts(this.currentPage)
+  },
+  watch: {
+    tagId: function () {
+      this.fetchTagPosts(1)
+    }
   }
 }
 </script>
