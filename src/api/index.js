@@ -94,5 +94,10 @@ export function makeAllNoticesAsRead () {
   return request({
     url: '/proxy/notifications/make_all_as_read',
     method: 'post'
+export function replies (data) {
+  return request({
+    url: '/proxy/replies/',
+    method: 'post',
+    data
   })
 }
