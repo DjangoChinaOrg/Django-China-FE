@@ -4,7 +4,7 @@
       <div class="post-header">
         <h1 class="post-title">{{post.title}}</h1>
         <div class="post-info">
-          <span>{{post.author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
+          <span>{{post.author}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
         </div>
       </div>
       <div class="post-body">{{post.body}}</div>
@@ -12,7 +12,7 @@
     <div class="post-comments">
       <div class="comments-info">
           {{post.reply_count}}回复/{{post.participants_count}}人参与
-          <div class="reply-author" @click="handleClick()">回复楼主</div>
+          <div class="reply-author" @click="handleClick(post.id)">回复楼主</div>
       </div>
       <ul class="comments-list">
         <li v-for="reply in replies" :key="reply.id">
@@ -32,18 +32,18 @@
           </ul>
           <p class="operate">
             <span><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
-            <span @click="handleClick()"><i class="iconfont">&#xe609;</i> 回复</span>
+            <span @click="handleClick(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
           </p>
         </li>
       </ul>
     </div>
     <Dialog title="提示信息" :visible.sync="show">
       <form >
-        <input type="text" class="form-control" placeholder="写下你的评论...">
+        <input type="text" class="form-control" v-model="comment" placeholder="写下你的评论...">
       </form>
       <span slot="footer">
         <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
-        <button type="button" class="btn btn-primary" @click="show = false">确定</button>
+        <button type="button" class="btn btn-primary" @click="handleSubmit(post.id)">确定</button>
       </span>
     </Dialog>
     <Footer />
@@ -53,7 +53,7 @@
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
-import { getPostDetail, getPostReplies } from '@/api'
+import { getPostDetail, getPostReplies, replies } from '@/api'
 export default {
   name: 'Detail',
   components: {
@@ -65,12 +65,23 @@ export default {
     return {
       post: {},
       replies: [],
-      show: false
+      show: false,
+      comment: '',
+      currentCommentId: null
     }
   },
   methods: {
-    handleClick: function () {
+    handleClick: function (id) {
+      this.currentCommentId = id
       this.show = !this.show
+    },
+    handleSubmit: function (id) {
+      this.postComment(id)
+    },
+    postComment: function (postId) {
+      replies({object_pk: postId, comment: this.comment, parent: this.currentCommentId}).then(res => {
+        this.show = !this.show
+      })
     }
   },
   mounted () {

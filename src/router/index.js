@@ -21,12 +21,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
       component: Home,
       children: [
         {
           path: '',
-          name: 'home',
+          name: 'index',
           component: HomeChild
         },
         {

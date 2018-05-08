@@ -75,3 +75,11 @@ export function getNoticeList (params) {
     }
   })
 }
+
+export function replies (data) {
+  return request({
+    url: '/proxy/replies/',
+    method: 'post',
+    data
+  })
+}
