@@ -19,6 +19,7 @@
           <div class="form-group row">
             <div class="col-sm-12 register">
               <button v-on:click="onSubmit($event)" type="submit" class="btn btn-info">登陆</button>
+              <button v-on:click="gitHubLogin($event)">GitHub 登陆</button>
             </div>
           </div>
         </form>
@@ -48,6 +49,38 @@ export default {
         this.msg = error
         console.log(error)
       })
+    },
+    getQueryParameter (url, name) {
+      if (!url) url = window.location.href
+      name = name.replace(/[[\]]/g, '\\$&')
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+      var results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    },
+    gitHubLogin (event) {
+      event.preventDefault()
+      var _this = this
+      var win = window.open(
+        'https://github.com/login/oauth/authorize?client_id=7c9367c9c71111ec1b6c',
+        'GitHub登陆',
+        'width=600, height=400'
+      )
+      var pollTimer = window.setInterval(function () {
+        try {
+          console.log(win.document.URL)
+          if (win.document.URL.indexOf('social-auth/github/loginsuccess') !== -1) {
+            window.clearInterval(pollTimer)
+            var url = win.document.URL
+            var accessCode = _this.getQueryParameter(url, 'code')
+            win.close()
+            auth.gitHubLogin(accessCode)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }, 100)
     }
   }
 }
@@ -57,7 +90,7 @@ export default {
     padding-top: 60px;
     .form-box {
       width: 400px;
-      margin: 200px auto;
+      margin: auto;
       padding: 10px 20px;
       border-radius: 5px;
       background: #fff;

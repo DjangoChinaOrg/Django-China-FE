@@ -50,11 +50,31 @@ export default {
     })
   },
 
+  gitHubLogin (code, redirect) {
+    return request({
+      url: '/proxy/rest-auth/github/login/',
+      data: { 'code': code },
+      method: 'POST'
+    }).then(res => {
+      localStorage.setItem('id_jwt', res.data.token)
+
+      Vue.set(this.user, 'authenticated', true)
+      Vue.set(this.user, 'details', this.translateUserDetails(res.data.user))
+
+      if (redirect) {
+        router.push(redirect)
+      } else {
+        router.push('/')
+      }
+    })
+  },
+
   refreshJwt (jwt) {
     return request({
-      url: '/proxy/rest-auth/refresh-jwt/'
+      url: '/proxy/rest-auth/refresh-jwt/',
+      data: { 'token': jwt }
     }).then(res => {
-      localStorage.setItem('id_jwt', res.data)
+      localStorage.setItem('id_jwt', res.data.token)
     })
   },
 
