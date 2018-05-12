@@ -96,7 +96,7 @@ export default {
         this.notifications = res.data.data
         this.currentPage = res.data.current_page
         this.lastPage = res.data.last_page
-        console.log(this.currentPage)
+        // console.log(this.currentPage)
         // console.log(this.lastPage)
       })
     },
