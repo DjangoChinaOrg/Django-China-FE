@@ -3,40 +3,67 @@
     <div class="profile">
       <div class="thumb">
         <div class="img-box">
-          <img src="../../assets/logo.png" alt="">
+          <img :src="formatMugshotUrl" alt="">
         </div>
-        <p class="username">Django 中国</p>
+        <p class="username">{{ user.nickname}}</p>
         <form>
-          <label for="username" class="upload-btn"><i class="iconfont">&#xe618;</i>上传头像</label>
-          <input type="file" class="upload" id="username">
+          <label for="mugshot" class="upload-btn"><i class="iconfont">&#xe618;</i>上传头像</label>
+          <input type="file" class="upload" id="mugshot">
         </form>
       </div>
       <div class="profile-box">
         <form>
           <div class="form-group">
             <label for="username">用户名</label>
-            <input type="email" class="form-control" disabled id="username">
+            <input :placeholder="user.username" type="email" class="form-control" disabled id="username">
           </div>
           <div class="form-group">
             <label for="nickname">昵称</label>
-            <input type="email" class="form-control" id="nickname">
+            <input v-model="newNickname" type="text" class="form-control" id="nickname">
           </div>
-          <div class="form-group">
-            <label for="sign">个性签名</label>
-            <input type="text" class="form-control" id="sign">
-          </div>
-          <button type="submit" class="btn btn-primary">保存</button>
+          <button @click.prevent="handleChangeNickname" type="submit" class="btn btn-primary">修改</button>
         </form>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { getUserDetails } from '@/api/users'
+import { changeNickname } from '@/api'
+// import auth from '@/utils/auth'
+
 export default {
   name: 'Basic',
   data () {
     return {
-      msg: 'basic'
+      userId: '',
+      user: '',
+      newNickname: ''
+    }
+  },
+  mounted: function () {
+    this.userId = localStorage.getItem('userId')
+    getUserDetails(this.userId).then(res => {
+      this.user = res.data
+      // console.log(this.user)
+    })
+  },
+  computed: {
+    formatMugshotUrl: function () {
+      return `http://api.dj-china.org${this.user.mugshot_url}`
+    }
+  },
+  methods: {
+    handleChangeNickname () {
+      if (this.newNickname.length === 0) {
+        return
+      }
+      let data = {
+        'nickname': this.newNickname
+      }
+      changeNickname(this.userId, data).then(res => {
+        console.log(res)
+      })
     }
   }
 }
