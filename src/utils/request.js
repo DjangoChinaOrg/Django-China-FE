@@ -10,7 +10,7 @@ instance.interceptors.request.use(function (config) {
   // config.headers['token'] = ''
   var jwtHeader = auth.getAuthHeader()
   if (jwtHeader) {
-    config.headers['Authentication'] = jwtHeader
+    config.headers['Authorization'] = jwtHeader
   }
   return config
 }, function (error) {
