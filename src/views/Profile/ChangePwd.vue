@@ -3,7 +3,7 @@
     <form>
       <div class="form-group">
         <label for="currentPassword">当前密码</label>
-        <input type="password" class="form-control" id="currrentPassword" placeholder="请输入当前密码">
+        <input type="password" class="form-control" id="currentPassword" placeholder="请输入当前密码">
       </div>
       <div class="form-group">
         <label for="newPassword">新密码</label>

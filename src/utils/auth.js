@@ -15,6 +15,7 @@ export default {
   },
 
   translateUserDetails (userServerData) {
+    localStorage.setItem('userId', userServerData.id)
     return {
       'id': userServerData.id,
       'username': userServerData.username,
@@ -38,7 +39,6 @@ export default {
       method: 'POST'
     }).then(res => {
       localStorage.setItem('id_jwt', res.data.token)
-
       Vue.set(this.user, 'authenticated', true)
       Vue.set(this.user, 'details', this.translateUserDetails(res.data.user))
 
@@ -88,6 +88,7 @@ export default {
 
   logout () {
     localStorage.removeItem('id_jwt')
+    localStorage.removeItem('userId')
     Vue.set(this.user, 'authenticated', false)
 
     location.reload()
