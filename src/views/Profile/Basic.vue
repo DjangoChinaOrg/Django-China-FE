@@ -62,7 +62,9 @@ export default {
         'nickname': this.newNickname
       }
       changeNickname(this.userId, data).then(res => {
-        console.log(res)
+        if (res.status === 200) {
+          this.user = res.data
+        }
       })
     }
   }

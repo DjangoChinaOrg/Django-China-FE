@@ -72,7 +72,7 @@ export default {
     getNotifications () {
       let params = {
         unread: this.unread,
-        page: this.targetPage
+        page_size: 1
       }
       getNoticeList(params).then(res => {
         this.unreadNotificationCount = res.data.count
