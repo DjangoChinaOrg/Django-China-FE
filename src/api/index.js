@@ -63,16 +63,6 @@ export function editPost () {
   })
 }
 
-export function getEmailList (params) {
-  return request({
-    url: '/proxy/users/email/',
-    method: 'get',
-    params: {
-      ...params
-    }
-  })
-}
-
 export function getNoticeList (params) {
   return request({
     url: '/proxy/notifications/',
@@ -108,6 +98,53 @@ export function replies (data) {
   return request({
     url: '/proxy/replies/',
     method: 'post',
+    data
+  })
+}
+
+export function getEmailList (params) {
+  return request({
+    url: '/proxy/users/email/',
+    method: 'get',
+    params: {
+      ...params
+    }
+  })
+}
+
+export function addEmail (data) {
+  return request({
+    url: '/proxy/users/email/',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteEmail (id) {
+  return request({
+    url: '/proxy/users/email/' + id + '/',
+    method: 'delete'
+  })
+}
+
+export function reverifyEmail (id) {
+  return request({
+    url: '/proxy/users/email/' + id + '/reverify/',
+    method: 'get'
+  })
+}
+
+export function setPrimaryEmail (id) {
+  return request({
+    url: '/proxy/users/email/' + id + '/set_primary/',
+    method: 'post'
+  })
+}
+
+export function changeNickname (id, data) {
+  return request({
+    url: '/proxy/rest-auth/users/' + id + '/',
+    method: 'patch',
     data
   })
 }

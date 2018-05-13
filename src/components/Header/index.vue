@@ -16,7 +16,7 @@
             <router-link to="/add">+ 发帖</router-link>
           </button>
           <div class="notice">
-            <router-link to="/notification"><i class="iconfont">&#xe634;</i><span class="badge badge-danger">5</span></router-link>
+            <router-link to="/notification"><i class="iconfont">&#xe634;</i><span class="badge badge-danger">{{ unreadNotificationCount }}</span></router-link>
           </div>
           <div class="avatar">
               <img src="../../assets/logo.png" alt="">
@@ -46,6 +46,7 @@
 
 <script>
 import auth from '@/utils/auth'
+import { getNoticeList } from '@/api'
 
 export default {
   name: 'Header',
@@ -59,10 +60,25 @@ export default {
   },
   data () {
     return {
-      auth: auth.user.authenticated
+      auth: auth.user.authenticated,
+      unread: 'true',
+      unreadNotificationCount: 0
     }
   },
+  mounted () {
+    this.getNotifications()
+  },
   methods: {
+    getNotifications () {
+      let params = {
+        unread: this.unread,
+        page: this.targetPage
+      }
+      getNoticeList(params).then(res => {
+        this.unreadNotificationCount = res.data.count
+        // console.log(this.unreadNotificationCount)
+      })
+    },
     handleClick: function () {
       alert(1)
     },
