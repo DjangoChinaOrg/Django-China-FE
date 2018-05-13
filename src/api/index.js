@@ -143,7 +143,7 @@ export function setPrimaryEmail (id) {
 
 export function changeNickname (id, data) {
   return request({
-    url: '/proxy/rest-auth/users/' + id + '/',
+    url: '/proxy/users/' + id + '/',
     method: 'patch',
     data
   })
