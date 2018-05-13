@@ -4,7 +4,7 @@
       <div class="post-header">
         <h1 class="post-title">{{post.title}}</h1>
         <div class="post-info">
-          <span>{{post.author}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
+          <span>{{post.author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
         </div>
       </div>
       <div class="post-body">{{post.body}}</div>

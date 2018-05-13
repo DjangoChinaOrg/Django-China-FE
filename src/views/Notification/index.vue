@@ -17,7 +17,7 @@
           <span><router-link :to="detailLink(item.post.post_id)">{{ item.post.post_title }}</router-link></span>
           <span> {{ formatVerbTwo(item.verb) }} </span>
           <!-- <span class="down"><i class="iconfont">&#xe629;</i></span> -->
-          <span class="reply-content">Re: {{ item.reply.comment }}</span>
+          <span class="reply-content" :title="item.reply.comment">Re: {{ item.reply.comment }}</span>
           <span class="button-box">
             <span :class="{ disabled: unread === 'false' }" @click="makeSingleNotificationsAsRead(item.id)">标记已读</span><span @click="showDeleteDialog(item.id)">删除</span>
           </span>

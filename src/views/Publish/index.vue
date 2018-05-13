@@ -17,7 +17,7 @@
     <div class="form-group">
       <label for="title">标签：</label>
       <select class="custom-select custom-select-sm" multiple v-model="post.tags">
-        <option v-for="tag in tagList" :key="tag.id">{{tag.name}}</option>
+        <option v-for="tag in tagList.data" :key="tag.id">{{tag.name}}</option>
       </select>
     </div>
     <div class="form-group">
