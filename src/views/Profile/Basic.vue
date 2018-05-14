@@ -5,7 +5,7 @@
         <div class="img-box">
           <img :src="formatMugshotUrl" alt="">
         </div>
-        <p class="username">{{ user.nickname}}</p>
+        <p class="username" v-html="user.nickname"></p>
         <form>
           <label for="mugshot" class="upload-btn"><i class="iconfont">&#xe618;</i>上传头像</label>
           <input type="file" class="upload" id="mugshot">
