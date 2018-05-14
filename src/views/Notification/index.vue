@@ -135,7 +135,10 @@ export default {
     deleteNotification (id) {
       deleteNotice(id).then(res => {
         if (res.status === 204) {
-          this.getNotifications()
+          // this.getNotifications()
+          this.deleteFromArray(this.notifications, (item) => {
+            return item.id === id
+          })
         } else {
           this.dialogMessage = '删除失败'
           this.messageDialogVisible = !this.messageDialogVisible
@@ -148,7 +151,8 @@ export default {
     markAllNotificationAsRead () {
       markAllNoticesAsRead().then(res => {
         if (res.status === 200) {
-          this.getNotifications()
+          // this.getNotifications()
+          this.notifications = []
         } else {
           this.dialogMessage = '全部标记已读失败'
           this.messageDialogVisible = !this.messageDialogVisible
@@ -165,7 +169,10 @@ export default {
       markSingleNoticeAsRead(id).then(res => {
         // console.log(res)
         if (res.status === 200) {
-          this.getNotifications()
+          // this.getNotifications()
+          this.deleteFromArray(this.notifications, (item) => {
+            return item.id === id
+          })
         } else {
           this.dialogMessage = '标记已读失败'
           this.messageDialogVisible = !this.messageDialogVisible
@@ -202,6 +209,12 @@ export default {
     sureDelete () {
       this.confirmDeleteDialogVisible = false
       this.deleteNotification(this.deleteNotificationId)
+    },
+    deleteFromArray (arr, compare) {
+      const index = arr.findIndex(compare)
+      if (index > -1) {
+        arr.splice(index, 1)
+      }
     }
   },
   components: {
