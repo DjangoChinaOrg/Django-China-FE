@@ -28,9 +28,7 @@
   </div>
 </template>
 <script>
-import { getUserDetails } from '@/api/users'
-import { changeNickname } from '@/api'
-// import auth from '@/utils/auth'
+import { getUserDetails, changeNickname } from '@/api/users'
 
 export default {
   name: 'Basic',

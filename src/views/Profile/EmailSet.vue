@@ -91,7 +91,9 @@ export default {
       }
       // TODO 403
       addEmail(data).then(res => {
-        console.log(res)
+        if (res.status === 201) {
+          this.getEmails()
+        }
       })
     },
     handleSetPrimaryEmail () {
@@ -109,7 +111,9 @@ export default {
       }
       // console.log(this.picked)
       deleteEmail(this.picked).then(res => {
-        console.log(res)
+        if (res.status === 204) {
+          this.getEmails()
+        }
       })
     },
     getPrePageEmails () {
@@ -142,7 +146,7 @@ export default {
     margin-top: 1rem;
   }
   .btn-primary{
-    margin-left: 0.35rem;
+    margin: 0 0.35rem;
   }
   .email-text {
     font-size: 1.2rem;
