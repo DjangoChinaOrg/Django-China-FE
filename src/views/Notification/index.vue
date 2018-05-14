@@ -104,7 +104,7 @@ export default {
         page: this.targetPage
       }
       getNoticeList(params).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         this.notifications = res.data.data
         this.currentPage = res.data.current_page
         this.lastPage = res.data.last_page
@@ -163,7 +163,7 @@ export default {
         return
       }
       markSingleNoticeAsRead(id).then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.status === 200) {
           this.getNotifications()
         } else {
