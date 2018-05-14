@@ -4,7 +4,7 @@
       <div class="notice-title">
         消息列表
         <span class="button-box">
-          <span class="notice-make-all-as-read-button" @click="makeAllNotificationAsRead()">全部标记已读</span>
+          <span class="notice-make-all-as-read-button" @click="markAllNotificationAsRead()">全部标记已读</span>
         </span>
         <span class="button-box classification">
             <span :class="{ active: unread === 'all' }" @click="getAllNotifications">全部</span><span :class="{ active: unread === 'false' }" @click="getReadNotifications">已读</span><span :class="{ active: unread === 'true' }" @click="getUnreadNotifications">未读</span>
@@ -19,7 +19,7 @@
           <!-- <span class="down"><i class="iconfont">&#xe629;</i></span> -->
           <span class="reply-content">Re: {{ item.reply.comment }}</span>
           <span class="button-box">
-            <span :class="{ disabled: unread === 'false' }" @click="makeSingleNotificationsAsRead(item.id)">标记已读</span><span @click="showDeleteDialog(item.id)">删除</span>
+            <span :class="{ disabled: item.unread === false }" @click="markSingleNotificationsAsRead(item.id)">标记已读</span><span @click="showDeleteDialog(item.id)">删除</span>
           </span>
           <span class="date">14:35</span>
         </li>
@@ -51,13 +51,23 @@
       </div>
     </div>
     <div class="dialog-wrapper">
-      <Dialog title="提示信息" :visible.sync="dialogVisible">
+      <Dialog title="提示信息" :visible.sync="confirmDeleteDialogVisible">
         <form>
-          <input type="text" class="form-control" placeholder="是否删除？">
+          <span>是否删除</span>
         </form>
         <span slot="footer">
-          <button type="button" class="btn btn-secondary" @click="dialogVisible = false">取消</button>
+          <button type="button" class="btn btn-secondary" @click="confirmDeleteDialogVisible = false">取消</button>
           <button type="button" class="btn btn-primary" @click="sureDelete">确定</button>
+        </span>
+      </Dialog>
+    </div>
+    <div class="dialog-wrapper">
+      <Dialog title="提示信息" :visible.sync="messageDialogVisible">
+        <form>
+          <span>{{ dialogMessage }}</span>
+        </form>
+        <span slot="footer">
+          <button type="button" class="btn btn-primary" @click.prevent="messageDialogVisible = false">确定</button>
         </span>
       </Dialog>
     </div>
@@ -66,7 +76,7 @@
 
 <script>
 import Dialog from '@/components/Dialog'
-import { getNoticeList, deleteNotice, makeSingleNoticeAsRead, makeAllNoticesAsRead } from '@/api'
+import { getNoticeList, deleteNotice, markSingleNoticeAsRead, markAllNoticesAsRead } from '@/api'
 
 export default {
   name: 'Notification',
@@ -75,11 +85,13 @@ export default {
       msg: 111,
       notifications: [],
       deleteNotificationId: -1,
-      dialogVisible: false,
+      confirmDeleteDialogVisible: false,
       unread: 'all',
       currentPage: 1,
       lastPage: 1,
-      targetPage: 1
+      targetPage: 1,
+      messageDialogVisible: false,
+      dialogMessage: ''
     }
   },
   mounted () {
@@ -92,7 +104,7 @@ export default {
         page: this.targetPage
       }
       getNoticeList(params).then(res => {
-        // console.log(res.data)
+        console.log(res.data)
         this.notifications = res.data.data
         this.currentPage = res.data.current_page
         this.lastPage = res.data.last_page
@@ -122,20 +134,45 @@ export default {
     },
     deleteNotification (id) {
       deleteNotice(id).then(res => {
-        console.log(res.status)
+        if (res.status === 204) {
+          this.getNotifications()
+        } else {
+          this.dialogMessage = '删除失败'
+          this.messageDialogVisible = !this.messageDialogVisible
+        }
+      }).catch(() => {
+        this.dialogMessage = '删除失败'
+        this.messageDialogVisible = !this.messageDialogVisible
       })
     },
-    makeAllNotificationAsRead () {
-      makeAllNoticesAsRead().then(res => {
-        console.log(res.status)
+    markAllNotificationAsRead () {
+      markAllNoticesAsRead().then(res => {
+        if (res.status === 200) {
+          this.getNotifications()
+        } else {
+          this.dialogMessage = '全部标记已读失败'
+          this.messageDialogVisible = !this.messageDialogVisible
+        }
+      }).catch(() => {
+        this.dialogMessage = '全部标记已读失败'
+        this.messageDialogVisible = !this.messageDialogVisible
       })
     },
-    makeSingleNotificationsAsRead (id) {
+    markSingleNotificationsAsRead (id) {
       if (this.unread === 'false') {
         return
       }
-      makeSingleNoticeAsRead(id).then(res => {
-        console.log(res.status)
+      markSingleNoticeAsRead(id).then(res => {
+        console.log(res)
+        if (res.status === 200) {
+          this.getNotifications()
+        } else {
+          this.dialogMessage = '标记已读失败'
+          this.messageDialogVisible = !this.messageDialogVisible
+        }
+      }).catch(() => {
+        this.dialogMessage = '标记已读失败'
+        this.messageDialogVisible = !this.messageDialogVisible
       })
     },
     formatVerbOne (verb) {
@@ -160,10 +197,10 @@ export default {
     },
     showDeleteDialog (id) {
       this.deleteNotificationId = id
-      this.dialogVisible = !this.dialogVisible
+      this.confirmDeleteDialogVisible = !this.confirmDeleteDialogVisible
     },
     sureDelete () {
-      this.dialogVisible = false
+      this.confirmDeleteDialogVisible = false
       this.deleteNotification(this.deleteNotificationId)
     }
   },

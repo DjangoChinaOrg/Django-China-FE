@@ -80,16 +80,16 @@ export function deleteNotice (id) {
   })
 }
 
-export function makeSingleNoticeAsRead (id) {
+export function markSingleNoticeAsRead (id) {
   return request({
     url: '/proxy/notifications/' + id + '/',
     method: 'put'
   })
 }
 
-export function makeAllNoticesAsRead () {
+export function markAllNoticesAsRead () {
   return request({
-    url: '/proxy/notifications/make_all_as_read',
+    url: '/proxy/notifications/mark_all_as_read/',
     method: 'post'
   })
 }
