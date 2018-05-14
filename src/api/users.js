@@ -13,3 +13,19 @@ export function getUserDetails (userId) {
     method: 'get'
   })
 }
+
+export function changeNickname (id, data) {
+  return request({
+    url: '/proxy/users/' + id + '/',
+    method: 'patch',
+    data
+  })
+}
+
+export function changePassword (data) {
+  return request({
+    url: '/proxy/rest-auth/password/change/',
+    method: 'post',
+    data
+  })
+}

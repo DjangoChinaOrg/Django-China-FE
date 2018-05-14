@@ -52,7 +52,7 @@
     </div>
     <div class="dialog-wrapper">
       <Dialog title="提示信息" :visible.sync="dialogVisible">
-        <form >
+        <form>
           <input type="text" class="form-control" placeholder="是否删除？">
         </form>
         <span slot="footer">
