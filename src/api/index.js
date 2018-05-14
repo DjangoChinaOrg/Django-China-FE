@@ -102,6 +102,13 @@ export function replies (data) {
   })
 }
 
+export function repliesLike (id) {
+  return request({
+    url: `/proxy/replies/${id}/like/`,
+    method: 'post'
+  })
+}
+
 export function getEmailList (params) {
   return request({
     url: '/proxy/users/email/',

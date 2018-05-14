@@ -25,6 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 ol, ul {
   list-style: none;
@@ -57,13 +59,21 @@ a:hover {
 .container {
   padding-top: 50px;
 }
-@font-face {
+/* @font-face {
   font-family: 'iconfont';
   src: url('/static/fonts/iconfont.eot');
   src: url('/static/fonts/iconfont.eot?#iefix') format('embedded-opentype'),
   url('/static/fonts/iconfont.woff') format('woff'),
   url('/static/fonts/iconfont.ttf') format('truetype'),
   url('/static/fonts/iconfont.svg#iconfont') format('svg');
+} */
+@font-face {
+  font-family: 'iconfont';  /* project id 612078 */
+  src: url('//at.alicdn.com/t/font_612078_ezdgiuj20x6layvi.eot');
+  src: url('//at.alicdn.com/t/font_612078_ezdgiuj20x6layvi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_612078_ezdgiuj20x6layvi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_612078_ezdgiuj20x6layvi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_612078_ezdgiuj20x6layvi.svg#iconfont') format('svg');
 }
 .iconfont{
   font-family:"iconfont" !important;

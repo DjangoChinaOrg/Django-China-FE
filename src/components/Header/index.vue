@@ -23,14 +23,13 @@
               <div class="dropdown">
                 <div><router-link to="/homepage"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
                 <div><router-link to="/profile/basic"><i class="iconfont">&#xe675;</i> 设置</router-link></div>
-                <div><a href=""><i class="iconfont">&#xe6e3;</i> 退出</a></div>
+                <div><a href="javascript:;" @click="onLogout"><i class="iconfont">&#xe6e3;</i> 退出</a></div>
               </div>
           </div>
           <template v-if="this.user.authenticated && this.user.details">
             <div class="log-box">
               <h2>{{ this.user.details.nickname }}</h2>
             </div>
-            <span><a href="" v-on:click="onLogout">登出</a></span>
           </template>
           <template v-else>
             <div class="log-box">
@@ -100,6 +99,7 @@ export default {
       position: absolute;
       left: 0;
       top: 0;
+      box-shadow: 0px 1px 4px rgba(0,0,0,.5);
       .header {
           display: flex;
           width: 1120px;

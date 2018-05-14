@@ -4,12 +4,12 @@
       <div class="post-header">
         <h1 class="post-title">{{post.title}}</h1>
         <div class="post-info">
-          <span>{{post.author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
+          <span>{{author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
         </div>
       </div>
       <div class="post-body">{{post.body}}</div>
     </div>
-    <div class="post-comments">
+    <div class="post-comments" :style="{maxHeight: expand?'initial':'550px'}">
       <div class="comments-info">
           {{post.reply_count}}回复/{{post.participants_count}}人参与
           <div class="reply-author" @click="handleClick(post.id)">回复楼主</div>
@@ -31,29 +31,29 @@
             </li>
           </ul>
           <p class="operate">
-            <span><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
+            <span @click="handleLike(reply)"><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
             <span @click="handleClick(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
           </p>
         </li>
       </ul>
     </div>
+    <div class="see-more" @click="toggleExpand" v-html="more"><span class="iconfont">&#xe629;</span></div>
     <Dialog title="提示信息" :visible.sync="show">
       <form >
-        <input type="text" class="form-control" v-model="comment" placeholder="写下你的评论...">
+        <mavon-editor v-model="comment" defaultOpen="edit"/>
       </form>
       <span slot="footer">
         <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
         <button type="button" class="btn btn-primary" @click="handleSubmit(post.id)">确定</button>
       </span>
     </Dialog>
-    <Footer />
   </div>
 </template>
 <script>
 import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
-import { getPostDetail, getPostReplies, replies } from '@/api'
+import { getPostDetail, getPostReplies, replies, repliesLike } from '@/api'
 export default {
   name: 'Detail',
   components: {
@@ -64,10 +64,12 @@ export default {
   data () {
     return {
       post: {},
+      author: {},
       replies: [],
       show: false,
       comment: '',
-      currentCommentId: null
+      currentCommentId: null,
+      expand: false
     }
   },
   methods: {
@@ -82,15 +84,29 @@ export default {
       replies({object_pk: postId, comment: this.comment, parent: this.currentCommentId}).then(res => {
         this.show = !this.show
       })
+    },
+    toggleExpand: function () {
+      this.expand = !this.expand
+    },
+    handleLike: function (reply) {
+      repliesLike(reply.id).then(res => {
+        console.log(res)
+      })
+    }
+  },
+  computed: {
+    more: function () {
+      return this.expand ? '<span>收起<i class="iconfont">&#xe748;</i></span>' : '<span>展开<i class="iconfont">&#xe629;</i></span>'
     }
   },
   mounted () {
     getPostDetail(this.$route.params.id).then(res => {
       this.post = res.data
-    }).then(() => {
-      getPostReplies(this.post.id).then(res => {
-        this.replies = res.data.data
-      })
+      // 单独拿出来的目的是避免vue的一个bug，如果不拿出来会出现一个vue的警告，比较烦人
+      this.author = res.data.author
+    })
+    getPostReplies(this.$route.params.id).then(res => {
+      this.replies = res.data.data
     })
   }
 }
@@ -100,9 +116,13 @@ export default {
   .fl {
     float: left;
   }
+  .modal-dialog {
+    max-width: 900px;
+  }
   .post-comments {
     width: 765px;
-    min-height: 300px;
+    max-height: 550px;
+    overflow: hidden;
     margin-top: 20px;
     background: #fff;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
@@ -191,5 +211,14 @@ export default {
     right: 10px;
     top: 50%;
     margin-top: -15px;
+  }
+  .see-more {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background: #fff;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.349019607843137);
   }
 </style>
