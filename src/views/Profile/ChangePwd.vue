@@ -46,11 +46,17 @@ export default {
   methods: {
     handleChangePassword () {
       if (this.oldPassword.length === 0 || this.newPassword1.length === 0 || this.newPassword2.length === 0) {
+        this.dialogMessage = '必填字段不能为空'
+        this.dialogVisible = !this.dialogVisible
+        this.clearVueModel()
         return
       }
-      // if (this.newPassword1 !== this.newPassword2) {
-      //   return
-      // }
+      if (this.newPassword1 !== this.newPassword2) {
+        this.dialogMessage = '新密码与重复密码不一致'
+        this.dialogVisible = !this.dialogVisible
+        this.clearVueModel()
+        return
+      }
       let data = {
         'new_password1': this.newPassword1,
         'new_password2': this.newPassword2,
@@ -62,14 +68,22 @@ export default {
         if (res.status === 200) {
           this.dialogMessage = '密码修改成功'
           this.dialogVisible = !this.dialogVisible
+          this.clearVueModel()
         } else {
           this.dialogMessage = '密码修改失败'
           this.dialogVisible = !this.dialogVisible
+          this.clearVueModel()
         }
       }).catch(() => {
         this.dialogMessage = '密码修改失败'
         this.dialogVisible = !this.dialogVisible
+        this.clearVueModel()
       })
+    },
+    clearVueModel () {
+      this.oldPassword = ''
+      this.newPassword1 = ''
+      this.newPassword2 = ''
     }
   },
   components: {

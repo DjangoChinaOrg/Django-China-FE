@@ -39,11 +39,21 @@
       </div>
       <button @click.prevent="handleAddEmail" type="submit" class="btn btn-primary">保存</button>
     </form>
+    <div class="dialog-wrapper">
+      <Dialog title="提示信息" :visible.sync="dialogVisible">
+        <form>
+          <span>{{ dialogMessage }}</span>
+        </form>
+        <span slot="footer">
+          <button type="button" class="btn btn-primary" @click.prevent="dialogVisible = false">确定</button>
+        </span>
+      </Dialog>
+    </div>
   </div>
 </template>
 <script>
 import { getEmailList, addEmail, setPrimaryEmail, deleteEmail } from '@/api'
-// import auth from '@/utils/auth'
+import Dialog from '@/components/Dialog'
 
 export default {
   name: 'EmailSet',
@@ -56,7 +66,9 @@ export default {
       newEmail: '',
       verificationCode: '',
       userId: '',
-      picked: ''
+      picked: '',
+      dialogVisible: false,
+      dialogMessage: ''
     }
   },
   mounted: function () {
@@ -79,21 +91,37 @@ export default {
     },
     handleAddEmail () {
       if (this.newEmail.length === 0) {
+        this.dialogMessage = '新邮箱不能为空'
+        this.dialogVisible = !this.dialogVisible
+        this.newEmail = ''
         return
       }
       let reg = new RegExp('^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$')
       if (!reg.test(this.newEmail)) {
+        this.dialogMessage = '新邮箱格式不正确'
+        this.dialogVisible = !this.dialogVisible
+        this.newEmail = ''
         return
       }
       // TODO 验证码
       let data = {
         'email': this.newEmail
       }
-      // TODO 403
       addEmail(data).then(res => {
         if (res.status === 201) {
+          this.dialogMessage = '新邮箱添加成功'
+          this.dialogVisible = !this.dialogVisible
+          this.newEmail = ''
           this.getEmails()
+        } else {
+          this.dialogMessage = '新邮箱添加失败'
+          this.dialogVisible = !this.dialogVisible
+          this.newEmail = ''
         }
+      }).catch(() => {
+        this.dialogMessage = '新邮箱添加失败'
+        this.dialogVisible = !this.dialogVisible
+        this.newEmail = ''
       })
     },
     handleSetPrimaryEmail () {
@@ -124,6 +152,9 @@ export default {
       this.targetPage = this.currentPage + 1
       this.getEmails()
     }
+  },
+  components: {
+    Dialog
   }
 }
 </script>

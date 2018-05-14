@@ -25,10 +25,21 @@
         </form>
       </div>
     </div>
+    <div class="dialog-wrapper">
+      <Dialog title="提示信息" :visible.sync="dialogVisible">
+        <form>
+          <span>{{ dialogMessage }}</span>
+        </form>
+        <span slot="footer">
+          <button type="button" class="btn btn-primary" @click.prevent="dialogVisible = false">确定</button>
+        </span>
+      </Dialog>
+    </div>
   </div>
 </template>
 <script>
 import { getUserDetails, changeNickname } from '@/api/users'
+import Dialog from '@/components/Dialog'
 
 export default {
   name: 'Basic',
@@ -36,7 +47,9 @@ export default {
     return {
       userId: '',
       user: '',
-      newNickname: ''
+      newNickname: '',
+      dialogVisible: false,
+      dialogMessage: ''
     }
   },
   mounted: function () {
@@ -54,6 +67,8 @@ export default {
   methods: {
     handleChangeNickname () {
       if (this.newNickname.length === 0) {
+        this.dialogMessage = '昵称不能为空'
+        this.dialogVisible = !this.dialogVisible
         return
       }
       let data = {
@@ -61,10 +76,24 @@ export default {
       }
       changeNickname(this.userId, data).then(res => {
         if (res.status === 200) {
+          this.dialogMessage = '昵称修改成功'
+          this.dialogVisible = !this.dialogVisible
           this.user = res.data
+          this.newNickname = ''
+        } else {
+          this.dialogMessage = '昵称修改失败'
+          this.dialogVisible = !this.dialogVisible
+          this.newNickname = ''
         }
+      }).catch(() => {
+        this.dialogMessage = '昵称修改失败'
+        this.dialogVisible = !this.dialogVisible
+        this.newNickname = ''
       })
     }
+  },
+  components: {
+    Dialog
   }
 }
 </script>
