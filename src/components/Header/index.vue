@@ -75,9 +75,6 @@ export default {
   },
   methods: {
     getNotifications () {
-      if (!this.user.authenticated || !this.user.details) {
-        return
-      }
       let params = {
         unread: this.unread,
         page_size: 1
