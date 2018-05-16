@@ -12,7 +12,7 @@
     <div class="post-comments" :style="{maxHeight: expand?'initial':'550px'}">
       <div class="comments-info">
           {{post.reply_count}}回复/{{post.participants_count}}人参与
-          <div class="reply-author" @click="handleClick(post.id)">回复楼主</div>
+          <div class="reply-author" @click="handleReply(post.id)">回复楼主</div>
       </div>
       <ul class="comments-list">
         <li v-for="reply in replies" :key="reply.id">
@@ -31,8 +31,8 @@
             </li>
           </ul>
           <p class="operate">
-            <span @click="handleLike(reply)"><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
-            <span @click="handleClick(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
+            <span @click="handleLike(reply)" :style="{color: reply.is_liked?'#e23232':''}"><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
+            <span @click="handleReply(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
           </p>
         </li>
       </ul>
@@ -40,7 +40,7 @@
     <div class="see-more" @click="toggleExpand" v-html="more"><span class="iconfont">&#xe629;</span></div>
     <Dialog title="提示信息" :visible.sync="show">
       <form >
-        <mavon-editor v-model="comment" defaultOpen="edit"/>
+        <textarea name="" id="" cols="63" rows="10" v-model="comment"></textarea>
       </form>
       <span slot="footer">
         <button type="button" class="btn btn-secondary" @click="show = false">取消</button>
@@ -73,7 +73,7 @@ export default {
     }
   },
   methods: {
-    handleClick: function (id) {
+    handleReply: function (id) {
       this.currentCommentId = id
       this.show = !this.show
     },
@@ -90,7 +90,8 @@ export default {
     },
     handleLike: function (reply) {
       repliesLike(reply.id).then(res => {
-        console.log(res)
+        this.$set(reply, 'is_liked', true)
+        this.$set(reply, 'like_count', reply.like_count + 1)
       })
     }
   },

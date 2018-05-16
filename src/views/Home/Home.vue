@@ -7,8 +7,8 @@
       <div class="fl post-info">
         <p class="post-title">
           <router-link :to="'/detail/' + post.id">{{post.title}}</router-link>
-          <span class="post-operation-tag blue-bg" v-if="post.highlighted">精</span>
-          <span class="post-operation-tag green-bg" v-if="post.pinned">顶</span>
+          <span class="badge badge-primary" v-if="post.highlighted">精</span>
+          <span class="badge badge-info" v-if="post.pinned">顶</span>
         </p>
         <p class="post-tag">
           <span class="post-author"><router-link :to="'/user/' + post.author.id">{{post.author.nickname}}</router-link></span>
@@ -18,7 +18,7 @@
             <span v-if="index !== post.tags.length-1" class="separator" :key="index">·</span>
           </template>
         </p>
-        <p v-if="user.details.isSuperuser" class="post-operation">
+        <p v-if="user.details&&user.details.isSuperuser" class="post-operation">
           <span @click="handlePinPost(post)">
             <span v-if="post.pinned">取消置顶</span>
             <span v-else>置顶</span>
@@ -143,9 +143,13 @@ export default {
   },
   created: function () {
     this.fetchPosts(this.currentPage)
+    console.log(auth)
   }
 }
 </script>
 
 <style>
+.post-operation span {
+  cursor: pointer;
+}
 </style>

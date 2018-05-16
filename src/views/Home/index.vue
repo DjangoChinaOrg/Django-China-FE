@@ -61,7 +61,7 @@ export default {
       this.popularPosts = res.data.data
     })
     getNoticeList({unread: true}).then(res => {
-      console.log(res)
+      console.log('home/index.vue', res)
     })
   }
 }
