@@ -12,14 +12,14 @@
             <input type="text" class="search">
             <button class="btn btn-primary btn-sm search-btn"><i class="iconfont">&#xe63d;</i></button>
           </div>
-          <button type="button" class="btn btn-primary btn-sm">
+          <button type="button" class="btn btn-primary btn-sm" v-if="this.user.authenticated && this.user.details">
             <router-link to="/add">+ 发帖</router-link>
           </button>
-          <div class="notice">
+          <div class="notice" v-if="this.user.authenticated && this.user.details">
             <router-link to="/notification"><i class="iconfont">&#xe634;</i><span class="badge badge-danger">{{ unreadNotificationCount }}</span></router-link>
           </div>
-          <div class="avatar">
-              <img src="../../assets/logo.png" alt="">
+          <div class="avatar" v-if="this.user.authenticated && this.user.details">
+              <img :src="formatMugshotUrl" alt="">
               <div class="dropdown">
                 <div><router-link to="/homepage"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
                 <div><router-link to="/profile/basic"><i class="iconfont">&#xe675;</i> 设置</router-link></div>
@@ -64,6 +64,11 @@ export default {
       unreadNotificationCount: 0
     }
   },
+  computed: {
+    formatMugshotUrl: function () {
+      return `http://api.dj-china.org${this.user.details.mugshotUrl}`
+    }
+  },
   mounted () {
     this.getNotifications()
   },
@@ -74,8 +79,9 @@ export default {
         page_size: 1
       }
       getNoticeList(params).then(res => {
-        this.unreadNotificationCount = res.data.count
-        // console.log(this.unreadNotificationCount)
+        if (res.status === 200) {
+          this.unreadNotificationCount = res.data.count
+        }
       })
     },
     handleClick: function () {
