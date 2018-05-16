@@ -62,6 +62,13 @@ export function editPost () {
     method: 'put'
   })
 }
+export function managePost (id, data) {
+  return request({
+    url: '/proxy/posts/' + id + '/',
+    method: 'patch',
+    data
+  })
+}
 
 export function getNoticeList (params) {
   return request({

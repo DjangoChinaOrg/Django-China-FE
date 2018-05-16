@@ -11,7 +11,7 @@
         </Card>
         <Card title="热门文章">
           <ul>
-            <li v-for="post in pupolarPosts" :key="post.id">
+            <li v-for="post in popularPosts" :key="post.id">
               <p><router-link :to="'/detail/' + post.id">{{post.title}}</router-link></p>
             </li>
           </ul>
@@ -44,7 +44,7 @@ export default {
   data () {
     return {
       tags: [],
-      pupolarPosts: [],
+      popularPosts: [],
       show: false
     }
   },
@@ -58,7 +58,7 @@ export default {
       this.tags = res.data
     })
     getPopularPosts().then(res => {
-      this.pupolarPosts = res.data.data
+      this.popularPosts = res.data.data
     })
     getNoticeList({unread: true}).then(res => {
       console.log(res)
@@ -131,14 +131,49 @@ export default {
   }
   .post-view {
     color: #666;
-    width: 220px;
+    width: 170px;
     height: 30px;
     line-height: 30px;
     text-align: right;
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 30%;
     margin-top: -15px;
+  }
+  .post-operation-tag{
+    padding: 0 3px;
+    border-radius: 3px;
+  }
+  .green-bg{
+    background-color: #227a77;
+    color: #fff;
+    padding: 5px;
+  }
+  .blue-bg{
+    background-color: #3dbbbf;
+    color: #fff;
+    padding: 5px;
+  }
+  .post-operation {
+    color: #666;
+    width: 210px;
+    height: 25px;
+    text-align: right;
+    position: absolute;
+    right: 180px;
+    top: 60%;
+  }
+  .post-operation>span{
+    border: 1px solid #1a8aeb;
+    border-radius: 5px;
+    padding: 3px 5px;
+    cursor: pointer;
+    line-height: 20px;
+    color: #1a8aeb;
+  }
+  .post-operation>span:hover{
+    color: #32d6fe;
+    border-color: #32d6fe;
   }
   /*右侧边栏*/
   .side-right {
