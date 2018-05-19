@@ -102,7 +102,8 @@ export default {
       width: 100%;
       height: 45px;
       background: #fff;
-      position: absolute;
+      position: fixed;
+      z-index: 999;
       left: 0;
       top: 0;
       box-shadow: 0px 1px 4px rgba(0,0,0,.5);
