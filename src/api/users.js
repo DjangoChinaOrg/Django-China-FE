@@ -29,3 +29,17 @@ export function changePassword (data) {
     data
   })
 }
+
+export function getUserPosts (userId, pageNumber) {
+  return request({
+    url: '/proxy/users/' + userId + '/posts/' + '?page=' + pageNumber,
+    method: 'get'
+  })
+}
+
+export function getUserReplies (userId, pageNumber) {
+  return request({
+    url: '/proxy/users/' + userId + '/replies/' + '?page=' + pageNumber,
+    method: 'get'
+  })
+}
