@@ -143,7 +143,6 @@ export default {
   },
   created: function () {
     this.fetchPosts(this.currentPage)
-    console.log(auth)
   }
 }
 </script>

@@ -16,10 +16,11 @@
               <input v-model="password" type="password" class="form-control" id="passwrod" placeholder="">
             </div>
           </div>
+          <p class="error-tips">{{msg['non_field_errors'][0]}}</p>
           <div class="form-group row">
             <div class="col-sm-12 register">
-              <button v-on:click="onSubmit($event)" type="submit" class="btn btn-info">登陆</button>
-              <button v-on:click="gitHubLogin($event)">GitHub 登陆</button>
+              <button v-on:click="onSubmit($event)" type="submit" class="btn btn-primary btn-sm">账号登陆</button>
+              <button v-on:click="gitHubLogin($event)" class="btn btn-info btn-sm">GitHub 登陆</button>
             </div>
           </div>
         </form>
@@ -36,7 +37,9 @@ export default {
     return {
       username: '',
       password: '',
-      msg: ''
+      msg: {
+        non_field_errors: []
+      }
     }
   },
   methods: {
@@ -46,8 +49,7 @@ export default {
         username: this.username,
         password: this.password
       }).catch((error) => {
-        this.msg = error
-        console.log(error)
+        this.msg = error.response.data
       })
     },
     getQueryParameter (url, name) {
@@ -88,6 +90,14 @@ export default {
 <style scoped lang="scss">
   .container {
     padding-top: 60px;
+    .error-tips {
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      color: #dc1616;
+    }
     .form-box {
       width: 400px;
       margin: auto;
@@ -95,7 +105,7 @@ export default {
       border-radius: 5px;
       background: #fff;
       .register {
-        text-align: center;
+        text-align: left;
       }
     }
     .title {

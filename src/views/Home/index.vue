@@ -25,7 +25,7 @@
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 import BalanceBoard from '@/components/Balanceboard'
-import { getPopularTags, getPopularPosts, getNoticeList } from '@/api'
+import { getPopularTags, getPopularPosts } from '@/api'
 export default {
   name: 'Home',
   components: {
@@ -59,9 +59,6 @@ export default {
     })
     getPopularPosts().then(res => {
       this.popularPosts = res.data.data
-    })
-    getNoticeList({unread: true}).then(res => {
-      console.log('home/index.vue', res)
     })
   }
 }

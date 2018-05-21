@@ -21,13 +21,17 @@
             <span>{{reply.user.nickname}}</span>
           </p>
           <p class="comment">{{reply.comment}}</p>
-          <ul class="comments-list">
+          <ul class="comments-list inner-comment">
             <li v-for="descendant in reply.descendants" :key="descendant.id">
               <p class="user">
                 <span><img v-bind:src="descendant.user.mugshot" alt=""></span>
                 <span>{{descendant.user.nickname}}</span>
               </p>
               <p class="comment">{{descendant.comment}}</p>
+              <p class="operate">
+                <span @click="handleLike(descendant)" :style="{color: descendant.is_liked?'#e23232':''}"><i class="iconfont">&#xe60c;</i> {{descendant.like_count}}</span>
+                <span @click="handleReply(descendant.id)"><i class="iconfont">&#xe609;</i> 回复</span>
+              </p>
             </li>
           </ul>
           <p class="operate">
@@ -127,6 +131,9 @@ export default {
     margin-top: 20px;
     background: #fff;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.349019607843137);
+  }
+  .inner-comment {
+    margin-left: 10px;
   }
   .comments-info {
     height: 45px;
