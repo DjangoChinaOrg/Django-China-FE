@@ -21,7 +21,7 @@
           <div class="avatar" v-if="this.user.authenticated && this.user.details">
               <img :src="formatMugshotUrl" alt="">
               <div class="dropdown">
-                <div><router-link to="/homepage"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
+                <div><router-link :to="'/user/' + this.user.details.id"><i class="iconfont">&#xe679;</i> 我的主页</router-link></div>
                 <div><router-link to="/profile/basic"><i class="iconfont">&#xe675;</i> 设置</router-link></div>
                 <div><a href="javascript:;" @click="onLogout"><i class="iconfont">&#xe6e3;</i> 退出</a></div>
               </div>

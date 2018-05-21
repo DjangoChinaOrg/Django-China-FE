@@ -2,7 +2,7 @@
   <ul class="post-list">
     <li v-for="post in postList" :key="post.id">
       <div class="fl thumb">
-        <img :src="post.author.mugshot" alt="">
+        <router-link :to="'/user/' + post.author.id"><img :src="post.author.mugshot" alt=""></router-link>
       </div>
       <div class="fl post-info">
         <p class="post-title">
