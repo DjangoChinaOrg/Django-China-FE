@@ -3,18 +3,20 @@
     <span class="icon gold">金</span>{{this.gold}}
     <span class="icon silver">银</span>{{this.silver}}
     <span class="icon copper">铜</span>{{this.copper}}
-    <a href="" class="sign-btn">签到</a>
+    <button v-if="!checked" class="btn btn-sm btn-primary" @click="performCheckin">签到</button>
+    <button v-else class="btn btn-sm btn-primary disabled">已签到</button>
   </div>
 </template>
 <script>
-import { getBalance } from '@/api/users'
+import { getBalance, checkin, isChecked } from '@/api/users'
 export default {
   name: 'BalanceBoard',
   data () {
     return {
       gold: 0,
       silver: 0,
-      copper: 0
+      copper: 0,
+      checked: false
     }
   },
   props: ['userId'],
@@ -29,10 +31,17 @@ export default {
           }
         }
       })
+    },
+    performCheckin: function () {
+      checkin(this.userId).then(res => {
+        this.copper = this.copper + res.data.amount
+        this.checked = true
+      })
     }
   },
   mounted: function () {
     this.fetchCurrencies()
+    isChecked(this.userId).then(res => { this.checked = res.data.checked })
   }
 }
 </script>
