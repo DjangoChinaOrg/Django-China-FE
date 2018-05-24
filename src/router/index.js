@@ -14,6 +14,7 @@ import Publish from '@/views/Publish'
 import Notification from '@/views/Notification'
 import HomePage from '@/views/HomePage'
 import Login from '@/views/Login'
+import Signup from '@/views/Signup'
 import GitHubLoginSuccess from '@/views/GitHubLoginSuccess'
 import Team from '@/views/Team'
 import Tags from '@/views/Tags'
@@ -102,6 +103,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
     },
     {
       path: '/social-auth/github/loginsuccess',
