@@ -43,3 +43,17 @@ export function getUserReplies (userId, pageNumber) {
     method: 'get'
   })
 }
+
+export function isChecked (userId) {
+  return request({
+    url: '/proxy/users/' + userId + '/checked/',
+    method: 'get'
+  })
+}
+
+export function checkin (userId) {
+  return request({
+    url: '/proxy/users/' + userId + '/checkin/',
+    method: 'post'
+  })
+}
