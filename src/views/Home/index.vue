@@ -24,7 +24,7 @@
 <script>
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
-import BalanceBoard from '@/components/Balanceboard'
+import BalanceBoard from '@/components/BalanceBoard'
 import { getPopularTags, getPopularPosts } from '@/api'
 export default {
   name: 'Home',
