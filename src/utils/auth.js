@@ -79,10 +79,8 @@ export default {
   },
 
   signup (creds) {
-    request.post('/proxy/rest-auth/signup/', creds, (data) => {
+    return request.post('/proxy/rest-auth/registration/', creds, (data) => {
       alert('Email已发送到邮箱')
-    }).error((err) => {
-      console.log(err)
     })
   },
 
