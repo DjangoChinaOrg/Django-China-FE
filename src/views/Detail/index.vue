@@ -58,6 +58,7 @@ import Dialog from '@/components/Dialog'
 import Card from '@/components/Card'
 import Footer from '@/components/Footer'
 import { getPostDetail, getPostReplies, replies, repliesLike } from '@/api'
+import auth from '@/utils/auth'
 export default {
   name: 'Detail',
   components: {
@@ -78,6 +79,10 @@ export default {
   },
   methods: {
     handleReply: function (id) {
+      if (!auth.user.authenticated) {
+        this.$router.push({path: '/login'})
+        return
+      }
       this.currentCommentId = id
       this.show = !this.show
     },

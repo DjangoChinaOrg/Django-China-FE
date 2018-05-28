@@ -23,9 +23,8 @@ instance.interceptors.response.use(function (response) {
 // Do something with response data
   return response
 }, function (error) {
-  const code = error.response.status
   console.log(error.response)
-  alert(code)
+  const code = error.response.status
   if (code === 400 || code === 401 || code === 403) {
     alert(error.response.data.detail)
     router.push({
