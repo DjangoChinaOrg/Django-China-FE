@@ -8,23 +8,23 @@
             <label for="username" class="col-sm-3 col-form-label">用户名：</label>
             <div class="col-sm-8">
               <input v-model="username" type="text" class="form-control" id="username" placeholder="">
+              <p v-if="'username' in this.msg" class="error-tips">{{msg['username'][0]}}</p>
             </div>
           </div>
-          <p v-if="'username' in this.msg" class="error-tips">{{msg['username'][0]}}</p>
           <div class="form-group row">
             <label for="email" class="col-sm-3 col-form-label">邮箱：</label>
             <div class="col-sm-8">
               <input v-model="email" type="text" class="form-control" id="email" placeholder="">
+              <p v-if="'email' in this.msg" class="error-tips">{{msg['email'][0]}}</p>
             </div>
           </div>
-          <p v-if="'email' in this.msg" class="error-tips">{{msg['email'][0]}}</p>
           <div class="form-group row">
             <label for="password1" class="col-sm-3 col-form-label">密码：</label>
             <div class="col-sm-8">
               <input v-model="password1" type="password" class="form-control" id="passwrod1" placeholder="">
+              <p v-if="'password1' in this.msg" class="error-tips">{{msg['password1'][0]}}</p>
             </div>
           </div>
-          <p v-if="'password1' in this.msg" class="error-tips">{{msg['password1'][0]}}</p>
           <div class="form-group row">
             <label for="password2" class="col-sm-3 col-form-label">确认密码：</label>
             <div class="col-sm-8">
@@ -55,8 +55,7 @@ export default {
       email: '',
       password1: '',
       password2: '',
-      msg: {
-      }
+      msg: {}
     }
   },
   methods: {
@@ -81,15 +80,15 @@ export default {
   .container {
     padding-top: 60px;
     .error-tips {
-      height: 20px;
-      line-height: 20px;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 10px;
+      height: 30px;
+      line-height: 30px;
+      margin: 0;
+      text-align: left;
       color: #dc1616;
+      white-space: nowrap;
     }
     .form-box {
-      width: 400px;
+      width: 450px;
       margin: auto;
       padding: 10px 20px;
       border-radius: 5px;

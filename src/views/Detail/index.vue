@@ -7,7 +7,7 @@
           <span>{{author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
         </div>
       </div>
-      <div class="post-body">{{post.body}}</div>
+      <div class="post-body" v-html="post.body"></div>
     </div>
     <div class="post-comments" :style="{maxHeight: expand?'initial':'550px'}">
       <div class="comments-info">

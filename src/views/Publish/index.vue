@@ -5,7 +5,7 @@
       <input type="text" id="title" class="form-control title" v-model="post.title">
     </div>
     <label>正文：</label>
-    <mavon-editor v-model="post.body"></mavon-editor>
+    <mavon-editor ref="md"></mavon-editor>
     <!-- <div class="form-inline mt-10">
       <label class="tag" for="inlineFormInputName2">标签：</label>
       <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="给帖子添加标签" v-model="tag" @keydown.enter="handleEnter">
@@ -50,14 +50,18 @@ export default {
       this.post.tags.splice(i, 1)
     },
     handleSubmit: function () {
+      this.post.body = this.$refs.md.d_render
       if (!this.post.title) {
         alert('请填写标题')
+        return
       }
       if (!this.post.body) {
         alert('请填写正文')
+        return
       }
       if (!this.post.tags.length) {
         alert('请填写标签')
+        return
       }
       publishPost(this.post).then(res => {
         console.log(res)

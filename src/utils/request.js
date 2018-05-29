@@ -25,11 +25,13 @@ instance.interceptors.response.use(function (response) {
 }, function (error) {
   console.log(error.response)
   const code = error.response.status
-  if (code === 400 || code === 401 || code === 403) {
+  if (code === 401 || code === 403) {
     alert(error.response.data.detail)
     router.push({
       path: '/login'
     })
+  } else if (code === 400) {
+    alert(error.response.data)
   } else {
     return Promise.reject(error)
   }
