@@ -28,9 +28,9 @@ export function getPopularTags () {
   })
 }
 
-export function getTagList () {
+export function getTagList (pageNumber) {
   return request({
-    url: '/proxy/tags/',
+    url: '/proxy/tags/' + '?page=' + pageNumber || 1,
     method: 'get'
   })
 }
