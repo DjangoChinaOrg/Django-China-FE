@@ -29,8 +29,9 @@ export function getPopularTags () {
 }
 
 export function getTagList (pageNumber) {
+  if (pageNumber === undefined) pageNumber = 1
   return request({
-    url: '/proxy/tags/' + '?page=' + pageNumber || 1,
+    url: '/proxy/tags/' + '?page=' + pageNumber,
     method: 'get'
   })
 }
