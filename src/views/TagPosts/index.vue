@@ -11,7 +11,7 @@
           <span class="separator">·</span>
           <template v-for="(tag, index) in post.tags">
             <span class="tag" :key="'tag' + tag.id + 1"><router-link :to="'/tags/' + tag.id">{{tag.name}}</router-link></span>
-            <span v-if="Home !== post.tags.length-1" class="separator" :key="index">·</span>
+            <span v-if="index !== post.tags.length-1" class="separator" :key="index">·</span>
           </template>
         </p>
       </div>

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import auth from './auth'
-import router from '../router'
 
 var instance = axios.create({
   baseURL: '',
@@ -26,10 +25,7 @@ instance.interceptors.response.use(function (response) {
   console.log(error.response)
   const code = error.response.status
   if (code === 401 || code === 403) {
-    alert(error.response.data.detail)
-    router.push({
-      path: '/login'
-    })
+    console.log(code)
   } else if (code === 400) {
     alert(error.response.data)
   } else {

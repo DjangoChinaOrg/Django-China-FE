@@ -42,6 +42,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
 }
 /*·分隔符*/
 .separator {

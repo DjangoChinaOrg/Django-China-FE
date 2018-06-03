@@ -50,6 +50,7 @@ export default {
       this.post.tags.splice(i, 1)
     },
     handleSubmit: function () {
+      console.log(this.$refs.md.d_render)
       this.post.body = this.$refs.md.d_render
       if (!this.post.title) {
         alert('请填写标题')
