@@ -36,7 +36,7 @@
             </div>
             <div class="detail">
               <p>{{nickname}}</p>
-              <p>第 {{id}} 号会员</p>
+              <p>第 {{userId}} 号会员</p>
               <p>{{dateJoined.split('.')[0].replace('T', ' ')}}加入</p>
             </div>
           </div>

@@ -19,7 +19,8 @@ import GitHubLoginSuccess from '@/views/GitHubLoginSuccess'
 import Team from '@/views/Team'
 import Tags from '@/views/Tags'
 import TagPosts from '@/views/TagPosts'
-
+// 认证相关
+import auth from '../utils/auth'
 Vue.use(Router)
 
 export default new Router({
@@ -40,7 +41,7 @@ export default new Router({
           component: Detail
         },
         {
-          path: 'tags/:id(\\d+)',
+          path: 'tags/:id',
           name: 'tag-posts',
           component: TagPosts
         }
@@ -49,6 +50,13 @@ export default new Router({
     {
       path: '/profile',
       name: 'profile',
+      beforeEnter: (to, from, next) => {
+        auth.checkAuth()
+        console.log(this)
+        if (!auth.authenticated) {
+          next({path: '/login'})
+        }
+      },
       component: Profile,
       redirect: '/profile/basic',
       children: [
