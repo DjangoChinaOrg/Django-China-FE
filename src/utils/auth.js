@@ -98,10 +98,10 @@ export default {
     var decodedJwt = jwtDecode(jwt)
     var exp = decodedJwt.exp
     var currentTime = new Date().getTime() / 1000
-    if (currentTime - exp < 1800) {
+    if ((exp - currentTime < 1800) && (exp - currentTime >= 0)) {
       // 刷新jwt
       return true
-    } else if (currentTime > exp) {
+    } else if (currentTime < exp) {
       // 暂时不用刷新
       return true
     } else {
