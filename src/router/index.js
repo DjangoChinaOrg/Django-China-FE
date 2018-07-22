@@ -52,9 +52,10 @@ export default new Router({
       name: 'profile',
       beforeEnter: (to, from, next) => {
         auth.checkAuth()
-        console.log(this)
-        if (!auth.authenticated) {
+        if (!auth.user.authenticated) {
           next({path: '/login'})
+        } else {
+          next()
         }
       },
       component: Profile,

@@ -69,9 +69,6 @@ export default {
       return `http://api.dj-china.org${this.user.details.mugshotUrl}`
     }
   },
-  mounted () {
-    this.getNotifications()
-  },
   methods: {
     getNotifications () {
       let params = {
@@ -84,12 +81,12 @@ export default {
         }
       })
     },
-    handleClick: function () {
-      alert(1)
-    },
-    onLogout: function () {
+    onLogout () {
       auth.logout()
     }
+  },
+  mounted: function () {
+    this.getNotifications()
   }
 }
 </script>
