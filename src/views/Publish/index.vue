@@ -50,7 +50,7 @@ export default {
       this.post.tags.splice(i, 1)
     },
     handleSubmit: function () {
-      console.log(this.$refs.md.d_render)
+      // console.log(this.$refs.md.d_render)
       this.post.body = this.$refs.md.d_render
       if (!this.post.title) {
         alert('请填写标题')
@@ -65,7 +65,12 @@ export default {
         return
       }
       publishPost(this.post).then(res => {
-        console.log(res)
+        if (res.status === 201) {
+          console.log(res)
+          this.$router.replace({name: 'detail', params: {id: res.data.id}})
+        } else {
+          alert('发表文章失败')
+        }
       })
     },
     handleClick: function () {
