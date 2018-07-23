@@ -67,7 +67,7 @@ export default {
       publishPost(this.post).then(res => {
         if (res.status === 201) {
           console.log(res)
-          this.$router.replace({name: 'detail', params: {id: res.data.id}})
+          this.$router.push({name: 'detail', params: {id: res.data.id}})
         } else {
           alert('发表文章失败')
         }
