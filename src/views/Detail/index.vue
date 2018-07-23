@@ -91,7 +91,8 @@ export default {
     },
     postComment: function (postId) {
       replies({object_pk: postId, comment: this.comment, parent: this.currentCommentId}).then(res => {
-        this.show = !this.show
+        this.show = !this.show // 隐藏对话框
+        this.getPostReplies()
       })
     },
     toggleExpand: function () {
@@ -101,6 +102,11 @@ export default {
       repliesLike(reply.id).then(res => {
         this.$set(reply, 'is_liked', true)
         this.$set(reply, 'like_count', reply.like_count + 1)
+      })
+    },
+    getPostReplies: function () {
+      getPostReplies(this.$route.params.id).then(res => {
+        this.replies = res.data.data
       })
     }
   },
@@ -115,9 +121,7 @@ export default {
       // 单独拿出来的目的是避免vue的一个bug，如果不拿出来会出现一个vue的警告，比较烦人
       this.author = res.data.author
     })
-    getPostReplies(this.$route.params.id).then(res => {
-      this.replies = res.data.data
-    })
+    this.getPostReplies()
   }
 }
 </script>
