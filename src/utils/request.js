@@ -22,14 +22,20 @@ instance.interceptors.response.use(function (response) {
 // Do something with response data
   return response
 }, function (error) {
-  console.log(error.response)
   const code = error.response.status
-  if (code === 401 || code === 403) {
-    router.push('/login')
-  } else if (code === 400) {
-    alert(error.response.data)
-  } else {
-    return Promise.reject(error)
+  const errMsg = error.response
+  switch (code) {
+    case 400:
+      alert(errMsg.data.detail)
+      return Promise.reject(error)
+    case 401:
+      router.push('/login')
+      return Promise.reject(error)
+    case 403:
+      alert(errMsg.data.detail)
+      return Promise.reject(error)
+    default:
+      return Promise.reject(error)
   }
 })
 export default instance
