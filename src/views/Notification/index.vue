@@ -13,15 +13,18 @@
       <ul class="notice-list">
         <li v-for="item in notifications" :key="item.id">
           <span><router-link :to="userLink(item.actor.id)">{{ item.actor.nickname }}</router-link></span>
-          <span> {{ formatVerbOne(item.verb) }} </span>
+          <span> {{ formatVerbLike(item.verb) }} </span>
           <span><router-link :to="detailLink(item.post.post_id)">{{ item.post.post_title }}</router-link></span>
-          <span> {{ formatVerbTwo(item.verb) }} </span>
+          <span> {{ formatVerbComment(item.verb) }} </span>
           <!-- <span class="down"><i class="iconfont">&#xe629;</i></span> -->
           <span class="reply-content" :title="item.reply.comment">Re: {{ item.reply.comment }}</span>
-          <span class="button-box">
-            <span :class="{ disabled: item.unread === false }" @click="markSingleNotificationsAsRead(item.id)">标记已读</span><span @click="showDeleteDialog(item.id)">删除</span>
+          <span class="button-box" v-if="item.unread === true">
+            <span @click="markSingleNotificationsAsRead(item.id)">标记已读</span><span @click="showDeleteDialog(item.id)">删除</span>
           </span>
-          <span class="date">14:35</span>
+          <span class="button-box" v-if="item.unread === false">
+            <span @click="showDeleteDialog(item.id)">删除</span>
+          </span>
+          <span class="date">{{ getNotificationTime(item.timestamp) }}</span>
         </li>
         <li v-if="lastPage > 1"></li>
         <!--<li>-->
@@ -98,13 +101,26 @@ export default {
     this.getNotifications()
   },
   methods: {
+    getNotificationTime (time) {
+      let notificationDate = time.substring(0, 10)
+      let notificationYear = notificationDate.split('-')[0]
+      let notificationMonth = notificationDate.split('-')[1]
+      let notificationDay = notificationDate.split('-')[2]
+      let date = new Date()
+
+      if (date.getFullYear() - notificationYear === 0 && (date.getMonth() + 1) - notificationMonth === 0 && date.getDate() - notificationDay === 0) {
+        return time.substring(11, 15)
+      } else {
+        return notificationDate
+      }
+    },
     getNotifications () {
       let params = {
         unread: this.unread,
         page: this.targetPage
       }
       getNoticeList(params).then(res => {
-        // console.log(res.data)
+        console.log(res.data)
         this.notifications = res.data.data
         this.currentPage = res.data.current_page
         this.lastPage = res.data.last_page
@@ -182,14 +198,14 @@ export default {
         this.messageDialogVisible = !this.messageDialogVisible
       })
     },
-    formatVerbOne (verb) {
+    formatVerbLike (verb) {
       if (verb === 'like') {
         return '赞了你在文章'
       } else {
         return '在'
       }
     },
-    formatVerbTwo (verb) {
+    formatVerbComment (verb) {
       if (verb === 'like') {
         return '的评论'
       } else {
@@ -278,10 +294,10 @@ export default {
     }
     .button-box {
       border: 1px solid #ccc;
-      span:first-child {
-        margin-right: 10px;
-        padding-right: 10px;
-        border-right: 1px solid #ccc;
+      span:nth-child(2) {
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid #ccc;
       }
       .disabled {
         color: #212529;
