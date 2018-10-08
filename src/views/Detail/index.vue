@@ -4,7 +4,7 @@
       <div class="post-header">
         <h1 class="post-title">{{post.title}}</h1>
         <div class="post-info">
-          <span>{{author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
+          <span><img v-bind:src="author.mugshot" alt=""></span> · <span>{{author.nickname}}</span><span class="separator"> · </span><span>{{post.views}}</span><span class="separator"> · </span><span>{{post.created}}</span>
         </div>
       </div>
       <div class="post-body markdown-body" v-html="post.body"></div>
@@ -21,6 +21,10 @@
             <span>{{reply.user.nickname}}</span>
           </p>
           <p class="comment">{{reply.comment}}</p>
+          <p class="operate">
+            <span @click="handleLike(reply)" :style="{color: reply.is_liked?'#e23232':''}"><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
+            <span @click="handleReply(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
+          </p>
           <ul class="comments-list inner-comment">
             <li v-for="descendant in reply.descendants" :key="descendant.id">
               <p class="user">
@@ -34,10 +38,7 @@
               </p>
             </li>
           </ul>
-          <p class="operate">
-            <span @click="handleLike(reply)" :style="{color: reply.is_liked?'#e23232':''}"><i class="iconfont">&#xe60c;</i> {{reply.like_count}}</span>
-            <span @click="handleReply(reply.id)"><i class="iconfont">&#xe609;</i> 回复</span>
-          </p>
+
         </li>
       </ul>
     </div>

@@ -8,7 +8,7 @@
           </router-link>
         </div>
         <div class="right-box">
-          <div class="search-box">
+          <div class="search-box" v-if="this.isSearch">
             <input type="text" class="search">
             <button class="btn btn-primary btn-sm search-btn"><i class="iconfont">&#xe63d;</i></button>
           </div>
@@ -61,7 +61,8 @@ export default {
     return {
       auth: auth.user.authenticated,
       unread: 'true',
-      unreadNotificationCount: 0
+      unreadNotificationCount: 0,
+      isSearch: false
     }
   },
   computed: {
