@@ -12,7 +12,7 @@
     <div class="post-comments" :style="{maxHeight: expand?'initial':'550px'}">
       <div class="comments-info">
           {{post.reply_count}}回复/{{post.participants_count}}人参与
-          <div class="reply-author" @click="handleReply(post.id)">回复楼主</div>
+          <div class="reply-author" @click="handleReply(null)">回复楼主</div>
       </div>
       <ul class="comments-list">
         <li v-for="reply in replies" :key="reply.id">
@@ -93,6 +93,7 @@ export default {
     postComment: function (postId) {
       replies({object_pk: postId, comment: this.comment, parent: this.currentCommentId}).then(res => {
         this.show = !this.show // 隐藏对话框
+        this.comment = ''
         this.getPostReplies()
       })
     },
