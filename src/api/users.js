@@ -65,3 +65,17 @@ export function checkin (userId) {
     method: 'post'
   })
 }
+
+export function getSocialAccounts () {
+  return request({
+    url: '/proxy/rest-auth/socialaccounts/',
+    method: 'get'
+  })
+}
+
+export function disconnectSocialAccount (socialAccountId) {
+  return request({
+    url: '/proxy/rest-auth/socialaccounts/' + socialAccountId + '/disconnect/',
+    method: 'post'
+  })
+}
