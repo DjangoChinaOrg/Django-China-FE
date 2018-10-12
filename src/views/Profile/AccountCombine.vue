@@ -1,12 +1,13 @@
 <template>
   <div>
-    <ul class="accnout-list">
+    <ul class="account-list">
       <li v-for="item in providers"
           v-if="item in socialAccounts"
           v-on:click="disconnectSocialAccount(socialAccounts[item].id)"
+          class="connected-account"
           :key="item">
         <span><i class="iconfont">&#xe677;</i> {{item}}</span>
-        <span class="badge badge-success">已绑定</span>
+        <span class="badge badge-success">已绑定（点击解除绑定）</span>
       </li>
       <li v-else :key="item">
         <span><i class="iconfont">&#xe677;</i> {{item}}</span>
@@ -50,12 +51,15 @@ export default {
 }
 </script>
 <style scoped>
-  .accnout-list {
+  .account-list {
     padding: 10px;
   }
-  .accnout-list li {
+  .account-list li {
     height: 45px;
     line-height: 45px;
     border-bottom: 1px solid #ccc;
+  }
+  .account-list li.connected-account {
+    cursor: pointer;
   }
 </style>
