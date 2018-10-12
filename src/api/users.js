@@ -22,6 +22,14 @@ export function changeNickname (id, data) {
   })
 }
 
+export function changeMugShot (filename, data) {
+  return request({
+    url: '/proxy/users/mugshot/' + filename,
+    method: 'post',
+    data
+  })
+}
+
 export function changePassword (data) {
   return request({
     url: '/proxy/rest-auth/password/change/',

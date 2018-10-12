@@ -8,7 +8,7 @@
         <p class="username" v-html="user.nickname"></p>
         <form>
           <label for="mugshot" class="upload-btn"><i class="iconfont">&#xe618;</i>上传头像</label>
-          <input type="file" class="upload" id="mugshot">
+          <input type="file" class="upload" id="mugshot" accept="image/*" @change="handleChangeMugShot">
         </form>
       </div>
       <div class="profile-box">
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import { getUserDetails, changeNickname } from '@/api/users'
+import { getUserDetails, changeNickname, changeMugShot } from '@/api/users'
 import Dialog from '@/components/Dialog'
 
 export default {
@@ -90,6 +90,26 @@ export default {
         this.dialogVisible = !this.dialogVisible
         this.newNickname = ''
       })
+    },
+
+    handleChangeMugShot (e) {
+      var curFile = e.target.files[0]
+      let filename = curFile.name
+      let reader = new FileReader()
+      reader.readAsArrayBuffer(curFile)
+      reader.onload = function (e) {
+        let mugshot = this.result
+        let data = {
+          'mugshot': mugshot
+        }
+        changeMugShot(filename, data).then(res => {
+          console.log('success:')
+          console.log(res)
+        }).catch(e => {
+          console.log('catch:')
+          console.log(e)
+        })
+      }
     }
   },
   components: {
