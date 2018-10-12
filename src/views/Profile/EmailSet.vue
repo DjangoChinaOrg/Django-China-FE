@@ -22,7 +22,7 @@
               </span>
             </li>
             <button @click.prevent="handleSetPrimaryEmail" type="submit" class="btn btn-primary">设置主邮箱</button>
-            <button @click.prevent="handleDeleteEmail" type="submit" class="btn btn-danger">删除邮箱</button>
+            <button @click.prevent="showDeleteDialog" type="submit" class="btn btn-danger">删除邮箱</button>
           </ul>
         </nav>
       </div>
@@ -45,7 +45,13 @@
           <span>{{ dialogMessage }}</span>
         </form>
         <span slot="footer">
-          <button type="button" class="btn btn-primary" @click.prevent="dialogVisible = false">确定</button>
+          <div v-if="dialogType==='show'">
+            <button type="button" class="btn btn-primary" @click.prevent="dialogVisible = false">确定</button>
+          </div>
+          <div v-if="dialogType==='confirm'">
+            <button type="button" class="btn btn-secondary" @click.prevent="dialogVisible = false">取消</button>
+            <button type="button" class="btn btn-danger" @click.prevent="handleDeleteEmail">确定</button>
+          </div>
         </span>
       </Dialog>
     </div>
@@ -68,7 +74,8 @@ export default {
       userId: '',
       picked: '',
       dialogVisible: false,
-      dialogMessage: ''
+      dialogMessage: '',
+      dialogType: 'show'
     }
   },
   mounted: function () {
@@ -133,7 +140,13 @@ export default {
         console.log(res)
       })
     },
+    showDeleteDialog () {
+      this.dialogMessage = '确定删除该邮箱？'
+      this.dialogType = 'confirm'
+      this.dialogVisible = !this.dialogVisible
+    },
     handleDeleteEmail () {
+      this.dialogVisible = !this.dialogVisible
       if (this.picked.length === 0) {
         return
       }
