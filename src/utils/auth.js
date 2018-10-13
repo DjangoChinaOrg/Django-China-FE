@@ -69,6 +69,14 @@ export default {
     })
   },
 
+  gitHubConnect (code) {
+    return request({
+      url: '/proxy/rest-auth/github/connect/',
+      data: { 'code': code },
+      method: 'POST'
+    })
+  },
+
   refreshJwt (jwt) {
     return request({
       url: '/proxy/rest-auth/refresh-jwt/',
