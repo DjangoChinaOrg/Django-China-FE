@@ -21,7 +21,7 @@
                 下一页
               </span>
             </li>
-            <button @click.prevent="handleSetPrimaryEmail" type="submit" class="btn btn-primary">设置主邮箱</button>
+            <button @click.prevent="showPrimaryDialog" type="submit" class="btn btn-primary">设置主邮箱</button>
             <button @click.prevent="showDeleteDialog" type="submit" class="btn btn-danger">删除邮箱</button>
           </ul>
         </nav>
@@ -51,6 +51,10 @@
           <div v-if="dialogType==='confirm'">
             <button type="button" class="btn btn-secondary" @click.prevent="dialogVisible = false">取消</button>
             <button type="button" class="btn btn-danger" @click.prevent="handleDeleteEmail">确定</button>
+          </div>
+          <div v-if="dialogType==='confirmPrimary'">
+            <button type="button" class="btn btn-secondary" @click.prevent="dialogVisible = false">取消</button>
+            <button type="button" class="btn btn-danger" @click.prevent="handleSetPrimaryEmail">确定</button>
           </div>
         </span>
       </Dialog>
@@ -131,13 +135,28 @@ export default {
         this.newEmail = ''
       })
     },
+    showPrimaryDialog () {
+      this.dialogMessage = '确定设置该邮箱为主邮箱？'
+      this.dialogType = 'confirmPrimary'
+      this.dialogVisible = !this.dialogVisible
+    },
     handleSetPrimaryEmail () {
+      this.dialogVisible = !this.dialogVisible
       if (this.picked.length === 0) {
         return
       }
       // console.log(this.picked)
       setPrimaryEmail(this.picked).then(res => {
-        console.log(res)
+        // console.log(res)
+        // this.picked
+        // console.log(this.picked)
+        for (var item of this.emailList) {
+          if (item.id === this.picked) {
+            item.primary = true
+          } else {
+            item.primary = false
+          }
+        }
       })
     },
     showDeleteDialog () {
