@@ -1,4 +1,5 @@
 import request from '../utils/request'
+import axios from 'axios'
 
 export function getBalance (userId) {
   return request({
@@ -22,12 +23,21 @@ export function changeNickname (id, data) {
   })
 }
 
-export function changeMugShot (filename, data) {
-  return request({
-    url: '/proxy/users/mugshot/' + filename,
-    method: 'post',
-    data
-  })
+export function changeMugShot (formData, userId) {
+  // return request({
+  //   url: '/proxy/users/' + userId,
+  //   method: 'patch',
+  //   formData
+  // })
+  // Todo: 使用封装的 request 方法，但我目前不会
+  return axios.patch('/proxy/users/' + userId + '/', // Patch 方法时尾斜号是必须的
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  )
 }
 
 export function changePassword (data) {

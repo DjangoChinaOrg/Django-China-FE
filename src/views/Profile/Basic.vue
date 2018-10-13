@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     formatMugshotUrl: function () {
-      return `http://api.dj-china.org${this.user.mugshot_url}`
+      return `http://127.0.0.1:8000${this.user.mugshot_url}`
     }
   },
   methods: {
@@ -93,23 +93,14 @@ export default {
     },
 
     handleChangeMugShot (e) {
-      var curFile = e.target.files[0]
-      let filename = curFile.name
-      let reader = new FileReader()
-      reader.readAsArrayBuffer(curFile)
-      reader.onload = function (e) {
-        let mugshot = this.result
-        let data = {
-          'mugshot': mugshot
-        }
-        changeMugShot(filename, data).then(res => {
-          console.log('success:')
-          console.log(res)
-        }).catch(e => {
-          console.log('catch:')
-          console.log(e)
+      let curFile = e.target.files[0]
+      let formData = new FormData()
+      formData.append('mugshot', curFile)
+      changeMugShot(formData, this.userId).then(
+        res => {
+          console.log(res.data)
+          this.user.mugshot_url = res.data.mugshot_url
         })
-      }
     }
   },
   components: {
