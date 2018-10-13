@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     formatMugshotUrl: function () {
-      return `http://127.0.0.1:8000${this.user.mugshot_url}`
+      return `http://api.dj-china.org${this.user.mugshot_url}`
     }
   },
   methods: {
@@ -96,11 +96,12 @@ export default {
       let curFile = e.target.files[0]
       let formData = new FormData()
       formData.append('mugshot', curFile)
-      changeMugShot(formData, this.userId).then(
-        res => {
-          console.log(res.data)
-          this.user.mugshot_url = res.data.mugshot_url
-        })
+      changeMugShot(formData, this.userId).then(res => {
+        console.log(res.data)
+        this.user.mugshot_url = res.data.mugshot_url
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   components: {
