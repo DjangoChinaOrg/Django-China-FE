@@ -145,11 +145,7 @@ export default {
       if (this.picked.length === 0) {
         return
       }
-      // console.log(this.picked)
       setPrimaryEmail(this.picked).then(res => {
-        // console.log(res)
-        // this.picked
-        // console.log(this.picked)
         for (var item of this.emailList) {
           if (item.id === this.picked) {
             item.primary = true

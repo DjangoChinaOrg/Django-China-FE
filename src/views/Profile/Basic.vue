@@ -5,6 +5,7 @@
         <div class="img-box">
           <img :src="formatMugshotUrl" alt="">
         </div>
+        <p class="err-message text text-danger" v-if="mugshotErrMessage">{{ mugshotErrMessage }}</p>
         <p class="username" v-html="user.nickname"></p>
         <form>
           <label for="mugshot" class="upload-btn"><i class="iconfont">&#xe618;</i>上传头像</label>
@@ -19,7 +20,7 @@
           </div>
           <div class="form-group">
             <label for="nickname">昵称</label>
-            <input v-model="newNickname" type="text" class="form-control" id="nickname">
+            <input v-model="user.nickname" type="text" class="form-control" id="nickname">
           </div>
           <button @click.prevent="handleChangeNickname" type="submit" class="btn btn-primary">修改</button>
         </form>
@@ -47,16 +48,15 @@ export default {
     return {
       userId: '',
       user: '',
-      newNickname: '',
       dialogVisible: false,
-      dialogMessage: ''
+      dialogMessage: '',
+      mugshotErrMessage: ''
     }
   },
   mounted: function () {
     this.userId = localStorage.getItem('userId')
     getUserDetails(this.userId).then(res => {
       this.user = res.data
-      // console.log(this.user)
     })
   },
   computed: {
@@ -66,29 +66,26 @@ export default {
   },
   methods: {
     handleChangeNickname () {
-      if (this.newNickname.length === 0) {
+      if (this.user.nickname.length === 0) {
         this.dialogMessage = '昵称不能为空'
         this.dialogVisible = !this.dialogVisible
         return
       }
       let data = {
-        'nickname': this.newNickname
+        'nickname': this.user.nickname
       }
       changeNickname(this.userId, data).then(res => {
         if (res.status === 200) {
           this.dialogMessage = '昵称修改成功'
           this.dialogVisible = !this.dialogVisible
           this.user = res.data
-          this.newNickname = ''
         } else {
           this.dialogMessage = '昵称修改失败'
           this.dialogVisible = !this.dialogVisible
-          this.newNickname = ''
         }
       }).catch(() => {
         this.dialogMessage = '昵称修改失败'
         this.dialogVisible = !this.dialogVisible
-        this.newNickname = ''
       })
     },
 
@@ -99,8 +96,10 @@ export default {
       changeMugShot(formData, this.userId).then(res => {
         console.log(res.data)
         this.user.mugshot_url = res.data.mugshot_url
+        this.mugshotErrMessage = ''
       }).catch(err => {
-        console.log(err)
+        console.log(err.response.data.mugshot)
+        this.mugshotErrMessage = err.response.data.mugshot[0]
       })
     }
   },
@@ -125,6 +124,9 @@ export default {
         width: 100%;
         height: 100%;
       }
+    }
+    .err-message {
+      margin-top: 15px;
     }
     .username {
       padding: 10px 0;
