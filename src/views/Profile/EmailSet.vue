@@ -33,10 +33,10 @@
         <label for="newEmail">Email</label>
         <input v-model="newEmail" type="email" class="form-control" id="newEmail" placeholder="请输入新的邮箱地址">
       </div>
-      <div class="form-group">
-        <label for="verificationCode">验证码</label>
-        <input v-model="verificationCode" type="text" class="form-control" id="verificationCode" placeholder="请输入右侧验证码">
-      </div>
+      <!--<div class="form-group">-->
+        <!--<label for="verificationCode">验证码</label>-->
+        <!--<input v-model="verificationCode" type="text" class="form-control" id="verificationCode" placeholder="请输入右侧验证码">-->
+      <!--</div>-->
       <button @click.prevent="handleAddEmail" type="submit" class="btn btn-primary">保存</button>
     </form>
     <div class="dialog-wrapper">
@@ -119,6 +119,7 @@ export default {
         'email': this.newEmail
       }
       addEmail(data).then(res => {
+        console.log(res.data)
         if (res.status === 201) {
           this.dialogMessage = '新邮箱添加成功'
           this.dialogVisible = !this.dialogVisible
@@ -129,8 +130,8 @@ export default {
           this.dialogVisible = !this.dialogVisible
           this.newEmail = ''
         }
-      }).catch(() => {
-        this.dialogMessage = '新邮箱添加失败'
+      }).catch((error) => {
+        this.dialogMessage = JSON.parse(error.request.response).email[0]
         this.dialogVisible = !this.dialogVisible
         this.newEmail = ''
       })
