@@ -13,7 +13,7 @@
           <div class="form-group row">
             <label for="password" class="col-sm-3 col-form-label">密码：</label>
             <div class="col-sm-8">
-              <input v-model="password" type="password" class="form-control" id="passwrod" placeholder="">
+              <input v-model="password" type="password" class="form-control" id="password" placeholder="">
             </div>
           </div>
           <p class="error-tips">{{msg['non_field_errors'][0]}}</p>
@@ -21,6 +21,7 @@
             <div class="col-sm-12 register">
               <button v-on:click="onSubmit($event)" type="submit" class="btn btn-primary btn-sm">账号登陆</button>
               <button v-on:click="gitHubLogin($event)" class="btn btn-info btn-sm">GitHub 登陆</button>
+              <a :href="forgetPasswordUrl" class="btn btn-danger btn-sm">忘记密码</a>
             </div>
           </div>
         </form>
@@ -39,7 +40,8 @@ export default {
       password: '',
       msg: {
         non_field_errors: []
-      }
+      },
+      forgetPasswordUrl: 'http://api.dj-china.org/accounts/password/reset/'
     }
   },
   methods: {
