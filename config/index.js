@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/proxy': {
-        target: 'http://api.dj-china.org',
+        target: 'https://dj-china.org/api',
         changeOrigin: true,
         pathRewrite: {
           '^/proxy': ''

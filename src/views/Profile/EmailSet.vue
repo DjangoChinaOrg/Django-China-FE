@@ -6,6 +6,7 @@
         <input type="radio" name="radio" :id="item.id" :value="item.id" v-model="picked">
         <span class="email-text">{{item.email}}</span>
         <span v-if="item.verified === true" class="badge badge-success">已验证</span>
+        <span v-else class="badge badge-danger">未验证</span>
         <span v-if="item.primary === true" class="badge badge-primary">首选</span>
       </li>
       <div class="button-group">
@@ -21,6 +22,7 @@
                 下一页
               </span>
             </li>
+            <button @click.prevent="showVerifyDialog" type="submit" class="btn btn-primary">验证选中的邮箱</button>
             <button @click.prevent="showPrimaryDialog" type="submit" class="btn btn-primary">设置主邮箱</button>
             <button @click.prevent="showDeleteDialog" type="submit" class="btn btn-danger">删除邮箱</button>
           </ul>
@@ -56,13 +58,17 @@
             <button type="button" class="btn btn-secondary" @click.prevent="dialogVisible = false">取消</button>
             <button type="button" class="btn btn-danger" @click.prevent="handleSetPrimaryEmail">确定</button>
           </div>
+          <div v-if="dialogType==='confirmVerify'">
+            <button type="button" class="btn btn-secondary" @click.prevent="dialogVisible = false">取消</button>
+            <button type="button" class="btn btn-danger" @click.prevent="handleVerifyEmail">确定</button>
+          </div>
         </span>
       </Dialog>
     </div>
   </div>
 </template>
 <script>
-import { getEmailList, addEmail, setPrimaryEmail, deleteEmail } from '@/api'
+import { getEmailList, addEmail, setPrimaryEmail, deleteEmail, reverifyEmail } from '@/api'
 import Dialog from '@/components/Dialog'
 
 export default {
@@ -135,6 +141,21 @@ export default {
         this.dialogVisible = !this.dialogVisible
         this.newEmail = ''
       })
+    },
+    showVerifyDialog () {
+      this.dialogMessage = '确定验证该邮箱吗？'
+      this.dialogType = 'confirmVerify'
+      this.dialogVisible = !this.dialogVisible
+    },
+    handleVerifyEmail () {
+      this.dialogVisible = !this.dialogVisible
+      if (this.picked.length === 0) {
+        alert("未选择任何邮箱！")
+        return
+      }
+      reverifyEmail(this.picked).then(res => {
+        alert("验证邮件已发送，请前往验证的邮箱点击激活链接激活")
+      }).catch((error) => alert("验证邮件发送失败，请稍后重试。"))
     },
     showPrimaryDialog () {
       this.dialogMessage = '确定设置该邮箱为主邮箱？'
