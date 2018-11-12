@@ -3,21 +3,21 @@ import axios from 'axios'
 
 export function getBalance (userId) {
   return request({
-    url: '/proxy/users/' + userId + '/balance/',
+    url: '/users/' + userId + '/balance/',
     method: 'get'
   })
 }
 
 export function getUserDetails (userId) {
   return request({
-    url: '/proxy/users/' + userId + '/',
+    url: '/users/' + userId + '/',
     method: 'get'
   })
 }
 
 export function changeNickname (id, data) {
   return request({
-    url: '/proxy/users/' + id + '/',
+    url: '/users/' + id + '/',
     method: 'patch',
     data
   })
@@ -30,7 +30,7 @@ export function changeMugShot (formData, userId) {
   //   formData
   // })
   // Todo: 使用封装的 request 方法，但我目前不会
-  return axios.patch('/proxy/users/' + userId + '/', // Patch 方法时尾斜号是必须的
+  return axios.patch('/users/' + userId + '/', // Patch 方法时尾斜号是必须的
     formData,
     {
       headers: {
@@ -42,7 +42,7 @@ export function changeMugShot (formData, userId) {
 
 export function changePassword (data) {
   return request({
-    url: '/proxy/rest-auth/password/change/',
+    url: '/rest-auth/password/change/',
     method: 'post',
     data
   })
@@ -50,42 +50,42 @@ export function changePassword (data) {
 
 export function getUserPosts (userId, pageNumber) {
   return request({
-    url: '/proxy/users/' + userId + '/posts/' + '?page=' + pageNumber,
+    url: '/users/' + userId + '/posts/' + '?page=' + pageNumber,
     method: 'get'
   })
 }
 
 export function getUserReplies (userId, pageNumber) {
   return request({
-    url: '/proxy/users/' + userId + '/replies/' + '?page=' + pageNumber,
+    url: '/users/' + userId + '/replies/' + '?page=' + pageNumber,
     method: 'get'
   })
 }
 
 export function isChecked (userId) {
   return request({
-    url: '/proxy/users/' + userId + '/checked/',
+    url: '/users/' + userId + '/checked/',
     method: 'get'
   })
 }
 
 export function checkin (userId) {
   return request({
-    url: '/proxy/users/' + userId + '/checkin/',
+    url: '/users/' + userId + '/checkin/',
     method: 'post'
   })
 }
 
 export function getSocialAccounts () {
   return request({
-    url: '/proxy/rest-auth/socialaccounts/',
+    url: '/rest-auth/socialaccounts/',
     method: 'get'
   })
 }
 
 export function disconnectSocialAccount (socialAccountId) {
   return request({
-    url: '/proxy/rest-auth/socialaccounts/' + socialAccountId + '/disconnect/',
+    url: '/rest-auth/socialaccounts/' + socialAccountId + '/disconnect/',
     method: 'post'
   })
 }
